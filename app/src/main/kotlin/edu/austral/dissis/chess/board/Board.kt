@@ -4,8 +4,8 @@ import edu.austral.dissis.Position
 import edu.austral.dissis.chess.piece.Piece
 
 interface Board {
-    fun getSizeX() : Int
-    fun getSizeY() : Int
+    fun getSizeX() : Int //Cantidad de columnas
+    fun getSizeY() : Int //Cantidad de filas
     fun getPiecesPositions() : Map<Position, Piece>
     fun getPositionByPiece(piece: Piece) : Position?
     fun getPositions() : Map<Position, Piece>
