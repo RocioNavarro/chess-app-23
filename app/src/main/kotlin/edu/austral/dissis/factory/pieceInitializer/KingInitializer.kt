@@ -31,7 +31,7 @@ class KingInitializer : PieceInitializer {
                                             DiagonalValidator(),
                                         )
                                     ),
-                                    /** Cant de casilleros que puede avanzar*/
+                                    /** Cant de casilleros que puede avanzar */
                                     LimitedMovementValidator(1)
                                 )
                             )
