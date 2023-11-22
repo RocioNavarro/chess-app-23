@@ -3,11 +3,12 @@ package edu.austral.dissis.common.validator.obstacle
 import edu.austral.dissis.Position
 import edu.austral.dissis.chess.game.ClassicBoardGameState
 import edu.austral.dissis.chess.board.Board
+import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 
 class EmptyDiagonalValidator : edu.austral.dissis.chess.validator.Validator {
 
-    override fun validate(movement: Movement, gameState: ClassicBoardGameState): edu.austral.dissis.chess.validator.ValidatorResponse {
+    override fun validate(movement: Movement, gameState: GameState): edu.austral.dissis.chess.validator.ValidatorResponse {
         val positions: Board = gameState.getActualBoard() as Board
         val fromX = movement.from.row
         val fromY = movement.from.column
