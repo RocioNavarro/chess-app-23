@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.factory.pieceInitializer
+package edu.austral.dissis.chess.factory.pieceFactory
 
 import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.piece.Piece
@@ -12,6 +12,7 @@ import edu.austral.dissis.chess.validator.direction.HorizontalValidator
 import edu.austral.dissis.chess.validator.direction.VerticalValidator
 import edu.austral.dissis.chess.factory.PieceInitializer
 
+/** Caballo */
 class KingInitializer : PieceInitializer {
     override fun initialize(color: Color): Piece {
         val uuid = java.util.UUID.randomUUID().toString()

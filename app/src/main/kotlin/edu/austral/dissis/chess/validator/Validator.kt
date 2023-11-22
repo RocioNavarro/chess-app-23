@@ -1,5 +1,6 @@
 package edu.austral.dissis.chess.validator
 
+import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 
 interface Validator {

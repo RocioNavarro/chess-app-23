@@ -10,4 +10,6 @@ interface Board {
     fun getPositionByPiece(piece: Piece) : Position?
     fun getPositions() : Map<Position, Piece>
     fun getPieceByPosition(position: Position) : Piece?
-    fun getOccupiedPositions(): List<Position>}
+    fun getOccupiedPositions(): List<Position>
+    fun getPieces() : List<Piece>
+}

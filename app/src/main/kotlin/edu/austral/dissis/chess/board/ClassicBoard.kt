@@ -39,4 +39,7 @@ class ClassicBoard(private val sizeX: Int,
         return piecesPositions.keys.toList()
     }
 
+    override fun getPieces(): List<Piece> {
+        return piecesPositions.values.toList()
+    }
 }
