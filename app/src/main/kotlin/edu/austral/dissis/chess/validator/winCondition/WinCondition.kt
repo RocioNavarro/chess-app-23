@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.winCondition
+package edu.austral.dissis.chess.validator.winCondition
 
 import edu.austral.dissis.chess.game.GameState
 

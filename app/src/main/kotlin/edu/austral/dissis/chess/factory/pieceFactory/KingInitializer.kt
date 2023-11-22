@@ -3,13 +3,13 @@ package edu.austral.dissis.chess.factory.pieceFactory
 import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.piece.Piece
 import edu.austral.dissis.chess.piece.PieceType
-import edu.austral.dissis.chess.validator.boardValidator.BoardBoundsValidator
-import edu.austral.dissis.chess.validator.boardValidator.LimitedMovementValidator
-import edu.austral.dissis.chess.validator.composition.AndValidator
-import edu.austral.dissis.chess.validator.composition.OrValidator
-import edu.austral.dissis.chess.validator.direction.DiagonalValidator
-import edu.austral.dissis.chess.validator.direction.HorizontalValidator
-import edu.austral.dissis.chess.validator.direction.VerticalValidator
+import edu.austral.dissis.chess.validator.gameCondition.boardValidator.BoardBoundsValidator
+import edu.austral.dissis.chess.validator.gameCondition.boardValidator.LimitedMovementValidator
+import edu.austral.dissis.chess.validator.gameCondition.composition.AndValidator
+import edu.austral.dissis.chess.validator.gameCondition.composition.OrValidator
+import edu.austral.dissis.chess.validator.gameCondition.direction.DiagonalValidator
+import edu.austral.dissis.chess.validator.gameCondition.direction.HorizontalValidator
+import edu.austral.dissis.chess.validator.gameCondition.direction.VerticalValidator
 import edu.austral.dissis.chess.factory.PieceInitializer
 
 /** Caballo */

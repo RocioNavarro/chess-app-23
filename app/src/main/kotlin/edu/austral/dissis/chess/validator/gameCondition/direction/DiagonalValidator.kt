@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.validator.direction
+package edu.austral.dissis.chess.validator.gameCondition.direction
 
 import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
