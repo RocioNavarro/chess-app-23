@@ -1,10 +1,10 @@
-package edu.austral.dissis.factory.pieceInitializer
+package edu.austral.dissis.chess.factory.pieceInitializer
 
 import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.piece.Piece
 import edu.austral.dissis.chess.piece.PieceType
 import edu.austral.dissis.chess.validator.direction.KnightValidator
-import edu.austral.dissis.factory.PieceInitializer
+import edu.austral.dissis.chess.factory.PieceInitializer
 
 class KnightInitializer : PieceInitializer {
 

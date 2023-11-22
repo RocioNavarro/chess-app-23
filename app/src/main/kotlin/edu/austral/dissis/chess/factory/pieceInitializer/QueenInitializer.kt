@@ -1,4 +1,4 @@
-package edu.austral.dissis.factory.pieceInitializer
+package edu.austral.dissis.chess.factory.pieceInitializer
 
 import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.piece.Piece
@@ -12,7 +12,7 @@ import edu.austral.dissis.chess.validator.direction.VerticalValidator
 import edu.austral.dissis.chess.validator.obstacleValidator.EmptyHorizontalValidator
 import edu.austral.dissis.chess.validator.obstacleValidator.EmptyVerticalValidator
 import edu.austral.dissis.common.validator.obstacle.*
-import edu.austral.dissis.factory.PieceInitializer
+import edu.austral.dissis.chess.factory.PieceInitializer
 
 class QueenInitializer : PieceInitializer {
 

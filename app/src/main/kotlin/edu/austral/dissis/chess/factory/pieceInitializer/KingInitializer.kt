@@ -1,4 +1,4 @@
-package edu.austral.dissis.factory.pieceInitializer
+package edu.austral.dissis.chess.factory.pieceInitializer
 
 import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.piece.Piece
@@ -10,7 +10,7 @@ import edu.austral.dissis.chess.validator.composition.OrValidator
 import edu.austral.dissis.chess.validator.direction.DiagonalValidator
 import edu.austral.dissis.chess.validator.direction.HorizontalValidator
 import edu.austral.dissis.chess.validator.direction.VerticalValidator
-import edu.austral.dissis.factory.PieceInitializer
+import edu.austral.dissis.chess.factory.PieceInitializer
 
 class KingInitializer : PieceInitializer {
     override fun initialize(color: Color): Piece {
