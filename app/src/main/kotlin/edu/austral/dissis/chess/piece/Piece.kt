@@ -1,30 +1,21 @@
 package edu.austral.dissis.chess.piece
 
+import edu.austral.dissis.chess.game.GameState
+import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.validator.Validator
+import edu.austral.dissis.chess.validator.ValidatorResponse
 
 data class Piece(val id: String,
                  val color: Color,
                  val type : PieceType,
                  val validator : Validator,
                  private val moveCounter : Int = 0){
-    fun getId(): String{
-        return id;
+    fun getMoveCounter(): Int {
+        return moveCounter
     }
 
-    fun getColor() : Color{
-        return color;
-    }
-
-    fun getType(): PieceType{
-        return type;
-    }
-
-    fun getValidator(): Validator{
-        return validator;
-    }
-
-    fun getMoveCounter(): Int{
-        return moveCounter;
+    fun validateMove(movement: Movement, gameState: GameState): ValidatorResponse {
+        return validator.validate(movement, gameState)
     }
 
 }
