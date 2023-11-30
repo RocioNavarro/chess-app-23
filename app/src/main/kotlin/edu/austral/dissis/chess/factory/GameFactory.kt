@@ -19,5 +19,16 @@ class GameFactory {
                 listOf(PromotionValidator())
             )
         }
+
+        fun createChessCapablancaGame(): GameState {
+            val board = BoardFactory.createCapablancaChessBoard()
+            return GameStateImp(
+                listOf(board),
+                CheckMateValidator(),
+                ClassicChessTurnValidator(Color.WHITE),
+                listOf(),
+                listOf(PromotionValidator())
+            )
+        }
     }
 }

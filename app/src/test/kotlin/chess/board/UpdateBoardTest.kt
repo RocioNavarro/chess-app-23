@@ -1,7 +1,7 @@
 package chess.board
 
 import edu.austral.dissis.Position
-import edu.austral.dissis.chess.board.ClassicBoard
+import edu.austral.dissis.chess.board.RectangularBoard
 import edu.austral.dissis.chess.factory.pieceFactory.PawnInitializer
 import edu.austral.dissis.chess.factory.pieceFactory.RookInitializer
 import edu.austral.dissis.chess.movement.Movement
@@ -14,7 +14,7 @@ class UpdateBoardTest {
 
     @Test
     fun updateBoard() {
-        val initialBoard = ClassicBoard(8, 8, mapOf(Position(0, 0) to RookInitializer().initialize(Color.WHITE)))
+        val initialBoard = RectangularBoard(8, 8, mapOf(Position(0, 0) to RookInitializer().initialize(Color.WHITE)))
         val movement = Movement(Position(0, 0), Position(1, 0))
         val updatedBoard = initialBoard.update(movement)
 
@@ -25,7 +25,7 @@ class UpdateBoardTest {
 
     @Test
     fun updateBoardWithPawn() {
-        val initialBoard = ClassicBoard(8, 8, mapOf(Position(1, 1) to PawnInitializer().initialize(Color.WHITE)))
+        val initialBoard = RectangularBoard(8, 8, mapOf(Position(1, 1) to PawnInitializer().initialize(Color.WHITE)))
         val movement = Movement(Position(1, 1), Position(2, 1))
         val updatedBoard = initialBoard.update(movement)
 

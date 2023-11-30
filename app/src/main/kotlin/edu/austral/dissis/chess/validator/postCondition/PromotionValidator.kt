@@ -2,10 +2,9 @@ package edu.austral.dissis.chess.validator.postCondition
 
 import edu.austral.dissis.Position
 import edu.austral.dissis.chess.board.Board
-import edu.austral.dissis.chess.board.ClassicBoard
+import edu.austral.dissis.chess.board.RectangularBoard
 import edu.austral.dissis.chess.factory.pieceFactory.QueenInitializer
 import edu.austral.dissis.chess.game.GameState
-import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.piece.Piece
 import edu.austral.dissis.chess.piece.PieceType
 
@@ -23,7 +22,7 @@ class PromotionValidator : PostConditionValidator {
             }
         }
 
-        return PostConditionResult.ResultValid(ClassicBoard(board.getSizeX(), board.getSizeY(), positionsMap))
+        return PostConditionResult.ResultValid(RectangularBoard(board.getSizeX(), board.getSizeY(), positionsMap))
     }
 
     private fun promotePawn(position: Position, gameState: GameState, map: MutableMap<Position, Piece>) {

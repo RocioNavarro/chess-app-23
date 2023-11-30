@@ -52,7 +52,7 @@ class CheckValidator {
                 piece.validateMove(Movement(position, kingPosition), gameState  )
             ) {
                 is ValidatorResponse.ValidatorResultValid -> return true
-                is ValidatorResponse.ValidatorResultInvalid -> {}
+                is ValidatorResponse.ValidatorResultInvalid -> return false
             }
         }
         return false

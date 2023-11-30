@@ -4,9 +4,9 @@ import edu.austral.dissis.Position
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.piece.Piece
 
-class ClassicBoard(private val sizeX: Int,
-                   private val sizeY: Int,
-                   private val piecesPositions: Map<Position, Piece> ) : Board {
+class RectangularBoard(private val sizeX: Int,
+                       private val sizeY: Int,
+                       private val piecesPositions: Map<Position, Piece> ) : Board {
     override fun getSizeX(): Int {
         return sizeX;
     }
@@ -44,6 +44,6 @@ class ClassicBoard(private val sizeX: Int,
         val newPiecePositions = piecesPositions.toMutableMap()
         newPiecePositions.remove(movement.from)
         newPiecePositions[movement.to] = piecesPositions[movement.from]!!
-        return ClassicBoard(sizeX, sizeY, newPiecePositions)
+        return RectangularBoard(sizeX, sizeY, newPiecePositions)
     }
 }
