@@ -32,7 +32,7 @@ class CheckValidator {
 
     private fun getKingPosition(actualBoard: Board, color: Color): Position? {
         actualBoard.getOccupiedPositions().forEach { coordinate ->
-            if (actualBoard.getPieceByPosition(coordinate)?.type == PieceType.KING && actualBoard.getPieceByPosition(coordinate)?.color == color) {
+            if (actualBoard.getPieceByPosition(coordinate)?.getType() == PieceType.KING && actualBoard.getPieceByPosition(coordinate)?.getColor() == color) {
                 return coordinate
             }
         }
@@ -45,7 +45,7 @@ class CheckValidator {
                                  kingColor: Color,
                                  kingPosition: Position): Boolean {
         // veo si la pieza en position es enemiga
-        if (gameState.getActualBoard().getPieceByPosition(position)?.color != kingColor) {
+        if (gameState.getActualBoard().getPieceByPosition(position)?.getColor() != kingColor) {
             val piece : Piece = gameState.getActualBoard().getPieceByPosition(position) ?: throw NoSuchElementException("No esta la pieza capo")
             when (
                 // veo si la pieza en position puede moverse a la kingPosition
@@ -57,5 +57,4 @@ class CheckValidator {
         }
         return false
     }
-
 }

@@ -3,6 +3,7 @@ package edu.austral.dissis.chess.server.gameServer
 import com.fasterxml.jackson.core.type.TypeReference
 import edu.austral.dissis.chess.game.FinishGameState
 import edu.austral.dissis.chess.game.GameState
+import edu.austral.dissis.chess.game.GameStateImp
 import edu.austral.dissis.chess.game.InvalidMoveGameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.payload.GameStatePayload
@@ -46,11 +47,10 @@ class GameServer(private var gameState: GameState,
     fun applyMove(movement: Movement) : GameState{
         return when (val result = gameState.movePiece(movement)) {
             is FinishGameState, is InvalidMoveGameState -> result
-            is GameState -> {
+            is GameStateImp -> {
                 this.gameState = result
                 result
             }
-            else -> {result}
         }
     }
 

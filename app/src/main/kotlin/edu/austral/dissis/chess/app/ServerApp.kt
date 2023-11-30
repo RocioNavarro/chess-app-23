@@ -4,7 +4,6 @@ import edu.austral.dissis.chess.factory.GameFactory.Companion.createChessClassic
 import edu.austral.dissis.chess.server.gameServer.GameServer
 
 fun main() {
-
     GameServer(createChessClassicGame())
-    // TODO  GameServer(createChessCapablancaGame())
+    // TODO  GameServer(createChessCapaBlancaGame())
 }

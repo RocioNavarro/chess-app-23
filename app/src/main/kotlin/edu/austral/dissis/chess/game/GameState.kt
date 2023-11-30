@@ -8,7 +8,7 @@ import edu.austral.dissis.chess.validator.Validator
 import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
 import edu.austral.dissis.chess.validator.winCondition.WinCondition
 
-interface GameState{
+sealed interface GameState{
 
     fun getActualBoard(): Board
     fun getBoards(): List<Board>  /** "Screenshots" con historial de tableros, se guarda el nuevo cada vez que se hace un movimiento */

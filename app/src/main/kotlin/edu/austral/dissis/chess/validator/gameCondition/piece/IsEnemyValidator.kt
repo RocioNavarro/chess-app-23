@@ -14,7 +14,7 @@ class IsEnemyValidator : Validator {
         return if ( piece == null ) ValidatorResponse.ValidatorResultInvalid("ERROR: no hay pieza")
         /** Comparo colores */
         else {
-            if (piece.color != gameState.getCurrentTurn()) ValidatorResponse.ValidatorResultValid("Es enemigo ")
+            if (piece.getColor() != gameState.getCurrentTurn()) ValidatorResponse.ValidatorResultValid("Es enemigo ")
             else ValidatorResponse.ValidatorResultInvalid("No es enemigo")
         }
     }
