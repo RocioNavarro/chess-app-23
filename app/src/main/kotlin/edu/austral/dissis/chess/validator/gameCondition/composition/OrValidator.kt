@@ -1,6 +1,5 @@
 package edu.austral.dissis.chess.validator.gameCondition.composition
 
-import edu.austral.dissis.chess.game.ClassicBoardGameState
 import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 

@@ -1,6 +1,7 @@
 package edu.austral.dissis.chess.board
 
 import edu.austral.dissis.Position
+import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.piece.Piece
 
 class ClassicBoard(private val sizeX: Int,
@@ -27,10 +28,6 @@ class ClassicBoard(private val sizeX: Int,
         return null;
     }
 
-    override fun getPositions(): Map<Position, Piece> {
-        return piecesPositions;
-    }
-
     override fun getPieceByPosition(position: Position): Piece? {
         return piecesPositions[position];
     }
@@ -41,5 +38,12 @@ class ClassicBoard(private val sizeX: Int,
 
     override fun getPieces(): List<Piece> {
         return piecesPositions.values.toList()
+    }
+
+    override fun update(movement: Movement): Board {
+        val newPiecePositions = piecesPositions.toMutableMap()
+        newPiecePositions.remove(movement.from)
+        newPiecePositions[movement.to] = piecesPositions[movement.from]!!
+        return ClassicBoard(sizeX, sizeY, newPiecePositions)
     }
 }

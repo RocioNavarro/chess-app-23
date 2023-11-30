@@ -1,8 +1,6 @@
 package edu.austral.dissis.common.validator.obstacle
 
 import edu.austral.dissis.Position
-import edu.austral.dissis.chess.game.ClassicBoardGameState
-import edu.austral.dissis.chess.board.Board
 import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.validator.ValidatorResponse

@@ -10,11 +10,11 @@ import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
 import edu.austral.dissis.chess.validator.turnCondition.TurnValidator
 import edu.austral.dissis.chess.validator.winCondition.WinCondition
 
-class ClassicBoardGameState (private val boards : List<Board>,
-                             private val winCondition: WinCondition,
-                             private val turnManager: TurnValidator,
-                             private val preConditions: List<Validator>,
-                             private val postConditions: List<PostConditionValidator>) : GameState{
+class GameStateImp (private val boards : List<Board>,
+                    private val winCondition: WinCondition,
+                    private val turnManager: TurnValidator,
+                    private val preConditions: List<Validator>,
+                    private val postConditions: List<PostConditionValidator>) : GameState{
     override fun getActualBoard(): Board {
         return boards.last();
     }
@@ -67,7 +67,7 @@ class ClassicBoardGameState (private val boards : List<Board>,
         val gameAuxBoards = this.getBoards().toMutableList()
         gameAuxBoards.add(boardAfterPostConditions)
 
-        val gameAux = ClassicBoardGameState(gameAuxBoards,
+        val gameAux = GameStateImp(gameAuxBoards,
             this.getWinCondition(),
             this.getTurnManager(),
             this.getPreConditions(),
@@ -82,7 +82,7 @@ class ClassicBoardGameState (private val boards : List<Board>,
                 gameAux.getPostConditions())
         }
 
-        return ClassicBoardGameState(gameAuxBoards,
+        return GameStateImp(gameAuxBoards,
             this.getWinCondition(),
             this.getTurnManager().nextTurn(),
             this.getPreConditions(),
