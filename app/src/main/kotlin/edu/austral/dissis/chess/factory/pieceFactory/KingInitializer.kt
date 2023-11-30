@@ -11,40 +11,41 @@ import edu.austral.dissis.chess.validator.gameCondition.direction.DiagonalMoveVa
 import edu.austral.dissis.chess.validator.gameCondition.direction.HorizontalMoveValidator
 import edu.austral.dissis.chess.validator.gameCondition.direction.VerticalMoveValidator
 import edu.austral.dissis.chess.factory.PieceInitializer
+import edu.austral.dissis.chess.validator.gameCondition.obstacleValidator.EmptyDestinationValidator
+import edu.austral.dissis.chess.validator.gameCondition.obstacleValidator.LegalPositionValidator
+import edu.austral.dissis.chess.validator.gameCondition.piece.IsEnemyValidator
 
-/** Caballo */
 class KingInitializer : PieceInitializer {
     override fun initialize(color: Color): Piece {
         val uuid = java.util.UUID.randomUUID().toString()
-        return Piece(uuid, color, PieceType.KING,  /** Se asigna color y tipo de pieza */
-            AndValidator(
-                listOf(
-                    BoardBoundsValidator(),
-                    OrValidator(
-                        listOf(
-                            AndValidator(
-                                listOf(
-                                    /** Movimientos permitidos */
-                                    OrValidator(
-                                        listOf(
-                                            HorizontalMoveValidator(),
-                                            VerticalMoveValidator(),
-                                            DiagonalMoveValidator(),
-                                        )
-                                    ),
-                                    /** Cant de casilleros que puede avanzar */
-                                    LimitedMovementValidator(1)
-                                )
-                            )
-                            //TODO -> enroque validator
-                        )
-                    )
-                )
-            )
-        )
+        return initialize(color, uuid)
     }
 
     override fun initialize(color: Color, id: String): Piece {
-        TODO("Not yet implemented")
+        return Piece(id,
+            color,
+            PieceType.KING,
+            AndValidator(
+                listOf(
+                    LegalPositionValidator(),
+                    OrValidator(
+                        listOf(
+                            IsEnemyValidator(),
+                            EmptyDestinationValidator()
+                        )
+                    ),
+                    OrValidator(
+                        listOf(
+                            VerticalMoveValidator(),
+                            DiagonalMoveValidator(),
+                            HorizontalMoveValidator()
+
+                        )
+                    ),
+                    LimitedMovementValidator(1)
+                )
+            )
+
+        )
     }
 }
