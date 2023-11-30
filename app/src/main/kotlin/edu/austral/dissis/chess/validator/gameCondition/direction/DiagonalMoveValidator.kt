@@ -6,7 +6,7 @@ import edu.austral.dissis.chess.validator.Validator
 import edu.austral.dissis.chess.validator.ValidatorResponse
 import kotlin.math.abs
 
-class DiagonalValidator : Validator {
+class DiagonalMoveValidator : Validator {
 
     override fun validate(movement: Movement, gameState: GameState): ValidatorResponse {
         val fromX = movement.from.row

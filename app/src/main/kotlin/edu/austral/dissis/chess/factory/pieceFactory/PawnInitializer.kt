@@ -3,51 +3,68 @@ package edu.austral.dissis.chess.factory.pieceFactory
 import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.piece.Piece
 import edu.austral.dissis.chess.piece.PieceType
-import edu.austral.dissis.chess.validator.gameCondition.boardValidator.BoardBoundsValidator
 import edu.austral.dissis.chess.validator.gameCondition.boardValidator.LimitedMovementValidator
 import edu.austral.dissis.chess.validator.gameCondition.composition.AndValidator
 import edu.austral.dissis.chess.validator.gameCondition.composition.OrValidator
-import edu.austral.dissis.chess.validator.gameCondition.direction.DiagonalValidator
-import edu.austral.dissis.chess.validator.gameCondition.direction.VerticalValidator
+import edu.austral.dissis.chess.validator.gameCondition.direction.DiagonalMoveValidator
+import edu.austral.dissis.chess.validator.gameCondition.direction.VerticalMoveValidator
 import edu.austral.dissis.chess.validator.gameCondition.obstacleValidator.EmptyVerticalValidator
 import edu.austral.dissis.chess.validator.gameCondition.piece.IsEnemyValidator
 import edu.austral.dissis.chess.validator.gameCondition.piece.IsFirstMoveValidator
 import edu.austral.dissis.chess.factory.PieceInitializer
+import edu.austral.dissis.chess.validator.gameCondition.direction.VerticalSenseValidator
+import edu.austral.dissis.chess.validator.gameCondition.obstacleValidator.EmptyDestinationValidator
+import edu.austral.dissis.chess.validator.gameCondition.obstacleValidator.LegalPositionValidator
 
 class PawnInitializer : PieceInitializer {
 
     override fun initialize(color: Color): Piece {
         val uuid = java.util.UUID.randomUUID().toString()
-        return Piece(uuid, color, PieceType.PAWN,
+        return initialize(color, uuid)
+    }
+
+    override fun initialize(color: Color, id: String): Piece {
+
+        val sense = if (color == Color.WHITE) 1 else -1 /** Las piezas blancas se encuentran abajo y se mueven hacia arriba y viceversa */
+
+        return Piece(id,
+            color,
+            PieceType.PAWN,
             AndValidator(
                 listOf(
-                    BoardBoundsValidator(),
+                    LegalPositionValidator(),
                     OrValidator(
                         listOf(
                             AndValidator(
                                 listOf(
-                                    VerticalValidator(),
+                                    VerticalMoveValidator(),
                                     EmptyVerticalValidator(),
-                                    LimitedMovementValidator(1)
+                                    LimitedMovementValidator(1),
+                                    EmptyDestinationValidator(),
+                                    VerticalSenseValidator(sense)
                                 )
                             ),
                             AndValidator(
-                                listOf( /** Cuando es el primer movimiento */
+                                listOf( // solo en primer movimiento
                                     IsFirstMoveValidator(),
-                                    VerticalValidator(),
+                                    VerticalMoveValidator(),
                                     EmptyVerticalValidator(),
-                                    LimitedMovementValidator(2)
-
+                                    LimitedMovementValidator(2),
+                                    EmptyDestinationValidator(),
+                                    VerticalSenseValidator(sense)
                                 )
                             ),
+
                             AndValidator(
                                 listOf(
                                     IsEnemyValidator(),
-                                    DiagonalValidator(),
+                                    DiagonalMoveValidator(),
                                     LimitedMovementValidator(1)
                                 )
                             )
-                            //TODO PromotionValidator()
+
+
+
                         )
                     )
                 )

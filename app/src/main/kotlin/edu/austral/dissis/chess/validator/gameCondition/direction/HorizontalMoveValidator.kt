@@ -5,7 +5,7 @@ import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.validator.Validator
 import edu.austral.dissis.chess.validator.ValidatorResponse
 
-class HorizontalValidator: Validator {
+class HorizontalMoveValidator: Validator {
 
     override fun validate(movement: Movement, gameState: GameState) : ValidatorResponse {
         val fromX = movement.from.row

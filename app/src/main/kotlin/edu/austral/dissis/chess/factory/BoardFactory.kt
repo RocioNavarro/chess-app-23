@@ -8,7 +8,7 @@ import edu.austral.dissis.chess.piece.Piece
 
 class BoardFactory {
     companion object {
-        fun createChessBoard(): ClassicBoard {
+        fun createClassicChessBoard(): ClassicBoard {
 
             var map: Map<Position, Piece> = mutableMapOf(
                 /** Ubico torres */
