@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.validator.gameCondition.obstacleValidator
+package edu.austral.dissis.chess.validator.preCondition.obstacleValidator
 
 import edu.austral.dissis.Position
 import edu.austral.dissis.chess.board.Board

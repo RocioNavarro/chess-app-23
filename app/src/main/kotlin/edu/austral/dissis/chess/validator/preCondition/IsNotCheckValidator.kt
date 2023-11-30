@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.validator.postCondition
+package edu.austral.dissis.chess.validator.preCondition
 
 import edu.austral.dissis.chess.board.Board
 import edu.austral.dissis.chess.game.GameStateImp
@@ -6,6 +6,7 @@ import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.validator.Validator
 import edu.austral.dissis.chess.validator.ValidatorResponse
+import edu.austral.dissis.chess.validator.postCondition.CheckValidator
 
 // Usamos el checkValidator porque es mas facil negarlo que checkear si en todas las jugadas no queda en jaque
 // Es una preCondition del game

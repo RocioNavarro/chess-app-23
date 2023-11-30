@@ -4,7 +4,7 @@ import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.game.GameStateImp
 import edu.austral.dissis.chess.piece.Color
 import edu.austral.dissis.chess.validator.postCondition.PromotionValidator
-import edu.austral.dissis.chess.validator.turnCondition.ClassicChessTurnValidator
+import edu.austral.dissis.chess.validator.preCondition.turnCondition.ClassicChessTurnValidator
 import edu.austral.dissis.chess.validator.winCondition.CheckMateValidator
 
 class GameFactory {

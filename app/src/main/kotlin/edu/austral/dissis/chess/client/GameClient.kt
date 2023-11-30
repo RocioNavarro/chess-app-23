@@ -25,7 +25,7 @@ class GameClient {
     private fun buildClient(root: GameView): Client {
         return NettyClientBuilder
             .createDefault()
-            .withAddress(InetSocketAddress("localhost", 420))
+            .withAddress(InetSocketAddress("localhost", 9300))
             .addMessageListener("initialize", object: TypeReference<Message<InitializePayload>>(){}, ClientInitializeListener(root))
             .addMessageListener("successfulMove", object: TypeReference<Message<GameStatePayload.SuccessfulMovePayload>>(){}, SuccessfulMoveListener(root))
             .addMessageListener("invalidMove", object: TypeReference<Message<GameStatePayload.InvalidMovePayload>>(){}, InvalidMoveListener(root))

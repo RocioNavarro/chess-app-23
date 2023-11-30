@@ -56,7 +56,7 @@ class GameServer(private var gameState: GameState,
 
     private fun initializeServer(): Server {
         return builder
-            .withPort(420) // asignamos el puerto
+            .withPort(9300) // asignamos el puerto
             .withConnectionListener(InitializeListener(this)) // asignamos lo que queremos hacer cuando alguien se conecta (el listener que va a usar)
             .addMessageListener("move", object: TypeReference<Message<Movement>>(){}, MovementListener(this)) // asignamos lo que queremos hacer cuando recibimos un movimiento de un cliente
             .build() // devuelve el server

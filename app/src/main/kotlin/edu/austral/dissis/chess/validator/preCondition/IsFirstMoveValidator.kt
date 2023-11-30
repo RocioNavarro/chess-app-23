@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.validator.gameCondition.piece
+package edu.austral.dissis.chess.validator.preCondition
 
 import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement

@@ -23,7 +23,7 @@ class DiagonalMoveValidator : Validator {
 
         // Un movimiento es diagonal si el cambio en X es igual al cambio en Y
         return  if (abs(deltaX) == abs(deltaY)) ValidatorResponse.ValidatorResultValid("Movimiento OK")
-        else ValidatorResponse.ValidatorResultInvalid("ERROR: No es un movimiento diagonal.")
+        else ValidatorResponse.ValidatorResultInvalid("ERROR: El movimiento no es diagonal.")
     }
 
 }
