@@ -63,8 +63,6 @@ class PawnInitializer : PieceInitializer {
                                 )
                             )
 
-
-
                         )
                     )
                 )

@@ -11,6 +11,6 @@ interface TurnValidator {
 
     fun nextTurn() : TurnValidator
 
-    // guardar el movimiento me va a servir para la implementacion en damas para cuando coma doble
+    /** Guardar el movimiento me va a servir para la implementacion en damas para cuando coma doble */
     fun validateTurn(movement: Movement, gameState: GameState) : ValidatorResponse
 }
