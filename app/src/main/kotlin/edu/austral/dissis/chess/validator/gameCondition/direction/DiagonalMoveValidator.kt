@@ -21,7 +21,7 @@ class DiagonalMoveValidator : Validator {
         val deltaX = toX - fromX
         val deltaY = toY - fromY
 
-        // Un movimiento es diagonal si el cambio en X es igual al cambio en Y
+        /** Un movimiento es diagonal si el cambio en X es igual al cambio en Y */
         return  if (abs(deltaX) == abs(deltaY)) ValidatorResponse.ValidatorResultValid("Movimiento OK")
         else ValidatorResponse.ValidatorResultInvalid("ERROR: El movimiento no es diagonal.")
     }

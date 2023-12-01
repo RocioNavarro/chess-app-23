@@ -7,7 +7,7 @@ import edu.austral.ingsis.clientserver.ServerConnectionListener
 
 class InitializeListener(private val gameServer: GameServer) : ServerConnectionListener {
 
-    //se llama cuando alguien se conecta al servidor
+    /** Se llama cuando alguien se conecta al servidor */
     override fun handleClientConnection(clientId: String) {
         val currentGameState = gameServer.getGameState()
         val adapterGameState = Adapter(currentGameState).init()

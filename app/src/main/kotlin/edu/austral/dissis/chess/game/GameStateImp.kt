@@ -18,75 +18,88 @@ class GameStateImp (private val boards : List<Board>,
     override fun getActualBoard(): Board {
         return boards.last();
     }
-
     override fun getBoards(): List<Board> {
         return boards;
     }
-
     override fun getCurrentTurn(): Color {
         return turnManager.getTurn();
     }
-
+    override fun getTurnManager(): TurnValidator {
+        return turnManager;
+    }
+    override fun getPreConditions(): List<Validator> {
+        return preConditions;
+    }
+    override fun getPostConditions(): List<PostConditionValidator> {
+        return postConditions;
+    }
+    override fun getWinCondition(): WinCondition {
+        return winCondition;
+    }
     override fun movePiece(movement: Movement): GameState {
-        // Valido turno
-        val turnResponse : ValidatorResponse = getTurnManager().validateTurn(movement, this)
-        if ( turnResponse is ValidatorResponse.ValidatorResultInvalid) {
-            return InvalidMoveGameState(this.getBoards(),
-                this.getWinCondition(),
-                this.getTurnManager(),
-                this.getPreConditions(),
-                this.getPostConditions(),
-                turnResponse.message)
+        // Validación del turno
+        val turnResponse: ValidatorResponse = getTurnManager().validateTurn(movement, this)
+        if (turnResponse is ValidatorResponse.ValidatorResultInvalid) {
+            return invalidMoveGameState("Invalid turn")
         }
-        // Valido precondiciones
-        val preConditionResponse : ValidatorResponse = validatePreConditions(movement)
-        if (preConditionResponse is ValidatorResponse.ValidatorResultInvalid) {
-            return InvalidMoveGameState(this.getBoards(),
-                this.getWinCondition(),
-                this.getTurnManager(),
-                this.getPreConditions(),
-                this.getPostConditions(),
-                preConditionResponse.message)
-        }
-        // Valido movimientos
-        val pieceMoveResponse : ValidatorResponse = validatePieceMove(movement)
-        if (pieceMoveResponse is ValidatorResponse.ValidatorResultInvalid) {
-            return InvalidMoveGameState(this.getBoards(),
-                this.getWinCondition(),
-                this.getTurnManager(),
-                this.getPreConditions(),
-                this.getPostConditions(),
-                pieceMoveResponse.message)
-        }
-        // Valido postCondiciones
-        val boardAux: Board = this.getActualBoard().update(movement)
 
-        val postConditionResponse : PostConditionResult = validatePostConditions(boardAux)
-        val boardAfterPostConditions = if( postConditionResponse is PostConditionResult.ResultValid) postConditionResponse.board else boardAux
+        // Validación de las precondiciones
+        val preConditionResponse: ValidatorResponse = validatePreConditions(movement)
+        if (preConditionResponse is ValidatorResponse.ValidatorResultInvalid) {
+            return invalidMoveGameState("Invalid preconditions")
+        }
+
+        // Validación del movimiento de la pieza
+        val pieceMoveResponse: ValidatorResponse = validatePieceMove(movement)
+        if (pieceMoveResponse is ValidatorResponse.ValidatorResultInvalid) {
+            return invalidMoveGameState("Invalid piece move")
+        }
+
+        // Validación de las postcondiciones
+        val boardAux: Board = this.getActualBoard().update(movement)
+        val postConditionResponse: PostConditionResult = validatePostConditions(boardAux)
+        val boardAfterPostConditions = if (postConditionResponse is PostConditionResult.ResultValid) postConditionResponse.board else boardAux
 
         val gameAuxBoards = this.getBoards().toMutableList()
         gameAuxBoards.add(boardAfterPostConditions)
 
-        val gameAux = GameStateImp(gameAuxBoards,
+        val gameAux = GameStateImp(
+            gameAuxBoards,
             this.getWinCondition(),
             this.getTurnManager(),
             this.getPreConditions(),
-            this.getPostConditions())
+            this.getPostConditions()
+        )
 
-        // Valido winConditions
-        if (getWinCondition().isWin(gameAux)) {
-            return FinishGameState(gameAux.getBoards(),
+        // Validación de las condiciones de victoria
+        return if (getWinCondition().isWin(gameAux)) {
+            FinishGameState(
+                gameAux.getBoards(),
                 gameAux.getWinCondition(),
                 gameAux.getTurnManager(),
                 gameAux.getPreConditions(),
-                gameAux.getPostConditions())
+                gameAux.getPostConditions()
+            )
+        } else {
+            GameStateImp(
+                gameAuxBoards,
+                this.getWinCondition(),
+                this.getTurnManager().nextTurn(),
+                this.getPreConditions(),
+                this.getPostConditions()
+            )
         }
+    }
 
-        return GameStateImp(gameAuxBoards,
+    private fun invalidMoveGameState(message: String): GameState {
+        return InvalidMoveGameState(
+            this.getBoards(),
             this.getWinCondition(),
-            this.getTurnManager().nextTurn(),
+            this.getTurnManager(),
             this.getPreConditions(),
-            this.getPostConditions())
+            this.getPostConditions(),
+            message
+        )
     }
 
     private fun validatePreConditions(movement: Movement): ValidatorResponse {
@@ -113,22 +126,5 @@ class GameStateImp (private val boards : List<Board>,
             }
         }
         return PostConditionResult.ResultValid(boardAux)
-    }
-
-
-    override fun getTurnManager(): TurnValidator {
-        return turnManager;
-    }
-
-    override fun getPreConditions(): List<Validator> {
-        return preConditions;
-    }
-
-    override fun getPostConditions(): List<PostConditionValidator> {
-        return postConditions;
-    }
-
-    override fun getWinCondition(): WinCondition {
-        return winCondition;
     }
 }

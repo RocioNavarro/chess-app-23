@@ -20,12 +20,8 @@ class EmptyHorizontalValidator : edu.austral.dissis.chess.validator.Validator {
                 return edu.austral.dissis.chess.validator.ValidatorResponse.ValidatorResultInvalid("Hay piezas en el camino")
             }
         }
-
         return edu.austral.dissis.chess.validator.ValidatorResponse.ValidatorResultValid("Movimiento OK")
-
     }
-
-
 }
 
 

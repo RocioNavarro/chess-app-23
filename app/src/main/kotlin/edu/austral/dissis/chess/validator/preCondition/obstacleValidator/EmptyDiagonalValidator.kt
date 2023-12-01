@@ -8,13 +8,13 @@ import kotlin.math.abs
 
 class EmptyDiagonalValidator : edu.austral.dissis.chess.validator.Validator {
 
-    // Verifico que el movimiento sea diagonal
+    /** Verifico que el movimiento sea diagonal viendo si el movimiento vertical es igual al horizontal */
     override fun validate(movement: Movement, gameState: GameState): ValidatorResponse {
         if (abs(movement.from.row - movement.to.row) != abs(movement.from.column - movement.to.column)) {
             return ValidatorResponse.ValidatorResultInvalid("No es un movimiento diagonal")
         }
 
-        // Recorro todas las posiciones por las que pasaría la pieza y voy viendo si están vacías
+        /** Recorro todas las posiciones por las que pasaría la pieza y voy viendo si están vacías */
         for (position in getDiagonalPath(movement.from, movement.to)) {
             if (gameState.getActualBoard().getPieceByPosition(position) != null) {
                 return ValidatorResponse.ValidatorResultInvalid("Hay piezas en el camino")
@@ -24,7 +24,7 @@ class EmptyDiagonalValidator : edu.austral.dissis.chess.validator.Validator {
         return ValidatorResponse.ValidatorResultValid("OK")
     }
 
-    // Me da una lista con todas las posiciones por las que va a pasar la piesa moviendose de forma diagonal
+    /** Me da una lista con todas las posiciones por las que va a pasar la pieza moviendose de forma diagonal */
     private fun getDiagonalPath(from: Position, to: Position): List<Position> {
         val path = mutableListOf<Position>()
         var currentRow = from.row

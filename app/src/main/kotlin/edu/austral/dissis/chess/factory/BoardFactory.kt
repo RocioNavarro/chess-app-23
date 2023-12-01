@@ -30,12 +30,12 @@ class BoardFactory {
                 Position(7, 5) to BishopInitializer().initialize(Color.BLACK),
 
                 /** Ubico reinas */
-                Position(0, 3) to QueenInitializer().initialize(Color.WHITE),
-                Position(7, 3) to QueenInitializer().initialize(Color.BLACK),
+                Position(0, 4) to QueenInitializer().initialize(Color.WHITE),
+                Position(7, 4) to QueenInitializer().initialize(Color.BLACK),
 
                 /** Ubico reyes */
-                Position(0, 4) to KingInitializer().initialize(Color.WHITE),
-                Position(7, 4) to KingInitializer().initialize(Color.BLACK),
+                Position(0, 3) to KingInitializer().initialize(Color.WHITE),
+                Position(7, 3) to KingInitializer().initialize(Color.BLACK),
             )
 
             /** Ubico peones */
