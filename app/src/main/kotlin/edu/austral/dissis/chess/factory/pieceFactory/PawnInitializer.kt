@@ -36,15 +36,6 @@ class PawnInitializer : PieceInitializer {
                     OrValidator(
                         listOf(
                             AndValidator(
-                                listOf(
-                                    VerticalMoveValidator(),
-                                    EmptyVerticalValidator(),
-                                    LimitedMovementValidator(1),
-                                    EmptyDestinationValidator(),
-                                    VerticalSenseValidator(sense)
-                                )
-                            ),
-                            AndValidator(
                                 listOf( // solo en primer movimiento
                                     IsFirstMoveValidator(),
                                     VerticalMoveValidator(),
@@ -54,8 +45,16 @@ class PawnInitializer : PieceInitializer {
                                     VerticalSenseValidator(sense)
                                 )
                             ),
-
-                            AndValidator(
+                            AndValidator( // despues del primer movimiento
+                                listOf(
+                                    VerticalMoveValidator(),
+                                    EmptyVerticalValidator(),
+                                    LimitedMovementValidator(1),
+                                    EmptyDestinationValidator(),
+                                    VerticalSenseValidator(sense)
+                                )
+                            ),
+                            AndValidator( // para comer otra pieza
                                 listOf(
                                     IsEnemyValidator(),
                                     DiagonalMoveValidator(),

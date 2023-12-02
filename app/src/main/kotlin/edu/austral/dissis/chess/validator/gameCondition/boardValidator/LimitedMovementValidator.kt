@@ -5,7 +5,7 @@ import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.validator.Validator
 import edu.austral.dissis.chess.validator.ValidatorResponse
 
-// Voy a usar esta clase para indicar el limite de movimientos que puede hacer una pieza
+/** Para piezas que tienen cant de movimientos limitada */
 class LimitedMovementValidator( private val maxMoveQuantity: Int ) : Validator {
 
     override fun validate(movement: Movement, gameState: GameState): ValidatorResponse {
@@ -16,15 +16,11 @@ class LimitedMovementValidator( private val maxMoveQuantity: Int ) : Validator {
         val isHorizontalValid = horizontalDistance <= maxMoveQuantity
         val isVerticalValid = verticalDistance <= maxMoveQuantity
 
-        return if (isHorizontalValid || isVerticalValid || isDiagonal(horizontalDistance, verticalDistance)) {
-            ValidatorResponse.ValidatorResultValid("Movement is OK")
+        return if (isHorizontalValid && isVerticalValid ) {
+            ValidatorResponse.ValidatorResultValid("Se puede mover esa cant de lugares")
         } else {
-            ValidatorResponse.ValidatorResultInvalid("Movement exceeds limit")
+            ValidatorResponse.ValidatorResultInvalid("ERROR: pieza no puede moverse esa cantidad de lugares")
         }
-    }
-
-    private fun isDiagonal(horizontalDistance: Int, verticalDistance: Int): Boolean {
-        return horizontalDistance == verticalDistance && horizontalDistance in 1..maxMoveQuantity
     }
 
 }
