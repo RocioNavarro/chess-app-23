@@ -9,7 +9,7 @@ data class Piece(private val id: String,
                  private val color: Color,
                  private val type : PieceType,
                  val validator : Validator,
-                 private val moveCounter : Int = 0){
+                 private var moveCounter : Int = 0){
     fun getMoveCounter(): Int {
         return moveCounter
     }
@@ -28,6 +28,10 @@ data class Piece(private val id: String,
 
     fun validateMove(movement: Movement, gameState: GameState): ValidatorResponse {
         return validator.validate(movement, gameState)
+    }
+
+    fun incrementMoveCounter(){
+        moveCounter++;
     }
 
 }
