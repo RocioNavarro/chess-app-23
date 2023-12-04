@@ -21,7 +21,6 @@ class PromotionValidator : PostConditionValidator {
                 promotePawn(Position(row, column), gameState, positionsMap)
             }
         }
-
         return PostConditionResult.ResultValid(RectangularBoard(board.getSizeX(), board.getSizeY(), positionsMap))
     }
 
@@ -37,4 +36,5 @@ class PromotionValidator : PostConditionValidator {
     private fun isPawn(piece: Piece?): Boolean {
         return piece?.getType() == PieceType.PAWN
     }
+
 }
