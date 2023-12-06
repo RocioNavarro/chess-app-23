@@ -1,9 +1,8 @@
-package edu.austral.dissis.chess.validator.preCondition
+package edu.austral.dissis.common.validator
 
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.piece.Color
-import edu.austral.dissis.common.validator.ValidatorResponse
 
 interface TurnValidator {
 

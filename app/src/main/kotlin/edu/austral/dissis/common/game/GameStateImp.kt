@@ -8,7 +8,7 @@ import edu.austral.dissis.common.validator.Validator
 import edu.austral.dissis.common.validator.ValidatorResponse
 import edu.austral.dissis.chess.validator.postCondition.PostConditionResult
 import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
-import edu.austral.dissis.chess.validator.preCondition.TurnValidator
+import edu.austral.dissis.common.validator.TurnValidator
 import edu.austral.dissis.common.validator.winCondition.WinCondition
 
 class GameStateImp (private val boards : List<Board>,

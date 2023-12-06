@@ -52,4 +52,10 @@ class RectangularBoard(private val sizeX: Int,
         newPiecePositions.remove(position)
         return RectangularBoard(sizeX, sizeY, newPiecePositions)
     }
+
+    override fun updatePieceByPosition(position: Position, piece: Piece): Board {
+        val newPiecePositions = piecesPositions.toMutableMap()
+        newPiecePositions[position] = piece
+        return RectangularBoard(sizeX, sizeY, newPiecePositions)
+    }
 }

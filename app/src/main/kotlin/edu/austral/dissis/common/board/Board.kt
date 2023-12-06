@@ -14,4 +14,6 @@ interface Board {
     fun getPieces() : List<Piece>
     fun update(movement: Movement): Board
     fun removePieceByPosition(position: Position): Board
+    fun updatePieceByPosition(position: Position, piece: Piece): Board
+
 }

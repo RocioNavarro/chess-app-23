@@ -1,7 +1,7 @@
 package edu.austral.dissis.chess.factory
 
 import edu.austral.dissis.chess.factory.pieceFactory.QueenInitializer
-import edu.austral.dissis.chess.validator.postCondition.IsNotCheckValidator
+import edu.austral.dissis.chess.validator.preCondition.IsNotCheckValidator
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.common.game.GameStateImp
 import edu.austral.dissis.common.piece.Color
