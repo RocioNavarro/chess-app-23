@@ -13,5 +13,5 @@ interface Board {
     fun getOccupiedPositions(): List<Position>
     fun getPieces() : List<Piece>
     fun update(movement: Movement): Board
-
+    fun removePieceByPosition(position: Position): Board
 }

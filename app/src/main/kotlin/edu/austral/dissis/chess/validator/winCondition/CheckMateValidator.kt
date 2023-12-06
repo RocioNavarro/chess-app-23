@@ -5,12 +5,10 @@ import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.piece.Color
-import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.chess.validator.postCondition.CheckValidator
 import edu.austral.dissis.common.game.GameStateImp
-import edu.austral.dissis.common.piece.PieceType
 import edu.austral.dissis.common.validator.ValidatorResponse
-import edu.austral.dissis.common.validator.WinCondition
+import edu.austral.dissis.common.validator.winCondition.WinCondition
 
 class CheckMateValidator : WinCondition {
 

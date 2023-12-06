@@ -6,8 +6,8 @@ import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.common.piece.PieceType
 import edu.austral.dissis.common.validator.gameCondition.composition.AndValidator
 import edu.austral.dissis.common.validator.gameCondition.composition.OrValidator
-import edu.austral.dissis.common.validator.gameCondition.direction.DiagonalMoveValidator
-import edu.austral.dissis.common.validator.gameCondition.direction.KnightMoveValidator
+import edu.austral.dissis.common.validator.gameCondition.movement.DiagonalMoveValidator
+import edu.austral.dissis.common.validator.gameCondition.movement.KnightMoveValidator
 import edu.austral.dissis.common.validator.preCondition.IsEnemyValidator
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.EmptyDestinationValidator
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.EmptyDiagonalValidator

@@ -46,4 +46,10 @@ class RectangularBoard(private val sizeX: Int,
         newPiecePositions[movement.to] = piecesPositions[movement.from]!!
         return RectangularBoard(sizeX, sizeY, newPiecePositions)
     }
+
+    override fun removePieceByPosition(position: Position): Board {
+        val newPiecePositions = piecesPositions.toMutableMap()
+        newPiecePositions.remove(position)
+        return RectangularBoard(sizeX, sizeY, newPiecePositions)
+    }
 }
