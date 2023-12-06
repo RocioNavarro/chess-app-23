@@ -1,11 +1,11 @@
 package edu.austral.dissis.chess.factory
 
-import edu.austral.dissis.Position
-import edu.austral.dissis.chess.board.Board
-import edu.austral.dissis.chess.board.RectangularBoard
+import edu.austral.dissis.common.Position
+import edu.austral.dissis.common.board.Board
+import edu.austral.dissis.common.board.RectangularBoard
 import edu.austral.dissis.chess.factory.pieceFactory.*
-import edu.austral.dissis.chess.piece.Color
-import edu.austral.dissis.chess.piece.Piece
+import edu.austral.dissis.common.piece.Color
+import edu.austral.dissis.common.piece.Piece
 
 class BoardFactory {
     companion object {

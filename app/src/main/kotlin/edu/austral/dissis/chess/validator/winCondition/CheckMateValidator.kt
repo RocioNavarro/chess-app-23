@@ -1,13 +1,13 @@
 package edu.austral.dissis.chess.validator.winCondition
 
-import edu.austral.dissis.Position
-import edu.austral.dissis.chess.board.Board
+import edu.austral.dissis.common.Position
+import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
-import edu.austral.dissis.chess.piece.Color
-import edu.austral.dissis.chess.piece.Piece
-import edu.austral.dissis.chess.validator.ValidatorResponse
+import edu.austral.dissis.common.piece.Color
+import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.chess.validator.postCondition.CheckValidator
+import edu.austral.dissis.common.validator.WinCondition
 
 class CheckMateValidator : WinCondition {
 
@@ -64,7 +64,7 @@ class CheckMateValidator : WinCondition {
                 val movement = Movement(position, positionTo)
                 val validator = piece.validateMove(movement, gameState)
 
-                if (validator is ValidatorResponse.ValidatorResultValid) {
+                if (validator is edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultValid) {
                     validMoves.add(movement)
                 }
             }

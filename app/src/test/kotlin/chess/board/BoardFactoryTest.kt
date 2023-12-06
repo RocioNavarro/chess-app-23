@@ -1,10 +1,10 @@
 package chess.board
 
-import edu.austral.dissis.Position
-import edu.austral.dissis.chess.board.Board
+import edu.austral.dissis.common.Position
+import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.chess.factory.BoardFactory
-import edu.austral.dissis.chess.piece.Color
-import edu.austral.dissis.chess.piece.PieceType
+import edu.austral.dissis.common.piece.Color
+import edu.austral.dissis.common.piece.PieceType
 import org.junit.Assert
 import org.junit.Test
 

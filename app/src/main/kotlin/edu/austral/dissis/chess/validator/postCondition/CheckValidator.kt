@@ -1,13 +1,13 @@
 package edu.austral.dissis.chess.validator.postCondition
 
-import edu.austral.dissis.Position
-import edu.austral.dissis.chess.board.Board
+import edu.austral.dissis.common.Position
+import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.chess.game.GameState
 import edu.austral.dissis.chess.movement.Movement
-import edu.austral.dissis.chess.piece.Color
-import edu.austral.dissis.chess.piece.Piece
-import edu.austral.dissis.chess.piece.PieceType
-import edu.austral.dissis.chess.validator.ValidatorResponse
+import edu.austral.dissis.common.piece.Color
+import edu.austral.dissis.common.piece.Piece
+import edu.austral.dissis.common.piece.PieceType
+import edu.austral.dissis.common.validator.ValidatorResponse
 
 /**
  *  Validador de JAQUE
@@ -43,7 +43,8 @@ class CheckValidator {
     private fun pieceAttacksKing(gameState: GameState,
                                  position: Position,
                                  kingColor: Color,
-                                 kingPosition: Position): Boolean {
+                                 kingPosition: Position
+    ): Boolean {
         // veo si la pieza en position es enemiga
         if (gameState.getActualBoard().getPieceByPosition(position)?.getColor() != kingColor) {
             val piece : Piece = gameState.getActualBoard().getPieceByPosition(position) ?: throw NoSuchElementException("No esta la pieza capo")
@@ -51,8 +52,8 @@ class CheckValidator {
                 // veo si la pieza en position puede moverse a la kingPosition
                 piece.validateMove(Movement(position, kingPosition), gameState  )
             ) {
-                is ValidatorResponse.ValidatorResultValid -> return true
-                is ValidatorResponse.ValidatorResultInvalid -> return false
+                is edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultValid -> return true
+                is edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultInvalid -> return false
             }
         }
         return false
