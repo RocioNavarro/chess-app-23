@@ -7,64 +7,74 @@ import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.chess.validator.postCondition.CheckValidator
+import edu.austral.dissis.common.game.GameStateImp
+import edu.austral.dissis.common.piece.PieceType
+import edu.austral.dissis.common.validator.ValidatorResponse
 import edu.austral.dissis.common.validator.WinCondition
 
 class CheckMateValidator : WinCondition {
 
-    private val checkValidator = CheckValidator()
-
     override fun isWin(gameState: GameState): Boolean {
-        val enemyPositions = getAllEnemyPositions(gameState)
-
-/*
-        for (position in enemyPositions) {
-            //recorre todas las piezas enemigas y obtiene todos los movimientos válidos que pueden hacer
-            val validMoves : List<Movement> = findAllValidMoves(position, gameState)
-
-            for (movement in validMoves) {
-                //vemos si alguno de los movimientos no deja en jaque
-                if (moveIsNotCheck(movement, gameState)) {
-                    return false
-                }
+        val kingColor = gameState.getTurnManager().nextTurn().getTurn() //el color del rey es el del próximo turno, que seria el enemigo
+        val board = gameState.getActualBoard()
+        val positionsOfAlliedKingPieces = getPositionsByColor(board, kingColor)
+        val possibleMoves = getPossibleMoves(positionsOfAlliedKingPieces, gameState)
+        for(pos in possibleMoves) {
+            if (moveIsNotCheck(pos, gameState, kingColor)) {
+                return false
             }
         }
-
- */
-        return false
+        return true
     }
 
-
-    private fun getAllEnemyPositions(gameState: GameState) : List<Position> {
-        val board : Board = gameState.getActualBoard()
-        val enemyPositions = mutableListOf<Position>()
-        val currentPlayer = gameState.getCurrentTurn()
-        val enemy: Color = if (currentPlayer == Color.WHITE) {
-            Color.BLACK
-        } else {
-            Color.WHITE
+    private fun getKingPosition(board: Board, kingColor: Color): Position? {
+        board.getOccupiedPositions().forEach {
+                coordinate ->
+            val piece = board.getPieceByPosition(coordinate)
+            if (isKing(piece) && matchesColor(piece, kingColor)) {
+                return coordinate
+            }
         }
+        return null
+    }
+
+    private fun isKing(piece: Piece?): Boolean{
+        return (piece?.getType() == PieceType.KING)
+    }
+
+    private fun matchesColor(piece: Piece?, color: Color): Boolean{
+        return (piece?.getColor() == color)
+    }
+
+    private fun getPositionsByColor(board: Board, color: Color) : List<Position> {
+        val occupiedPositions = mutableListOf<Position>()
 
         for(position in board.getOccupiedPositions()){
             val piece = board.getPieceByPosition(position)
-            if (piece != null && piece.getColor() == enemy) {
-                enemyPositions.add(position)
+            if (piece != null && piece.getColor() == color) {
+                occupiedPositions.add(position)
             }
         }
-        return enemyPositions
+        return occupiedPositions
     }
 
-    private fun findAllValidMoves(position: Position, gameState: GameState) : List<Movement> {
-        val board: Board = gameState.getActualBoard()
-        val piece: Piece = board.getPieceByPosition(position) ?: throw NoSuchElementException("No está la pieza, capo")
+    private fun getPossibleMoves(positions: List<Position>, gameState: GameState) : List<Movement> {
+        val possibleMoves = mutableListOf<Movement>()
+        for(pos in positions) {
+            possibleMoves.addAll(getPieceValidMoves(pos, gameState))
+        }
+        return possibleMoves
+    }
+
+    private fun getPieceValidMoves(occupiedPosition: Position, gameState: GameState) : List<Movement> {
+        val piece = gameState.getActualBoard().getPieceByPosition(occupiedPosition) ?: throw NoSuchElementException("No estÃ¡ la pieza, capo")
         val validMoves = mutableListOf<Movement>()
-
-        for (row in 0 until board.getSizeX()) {
-            for (column in 0 until board.getSizeY()) {
+        for (row in 0 until gameState.getActualBoard().getSizeX()) {
+            for (column in 0 until gameState.getActualBoard().getSizeY()) {
                 val positionTo = Position(row, column)
-                val movement = Movement(position, positionTo)
+                val movement = Movement(occupiedPosition, positionTo)
                 val validator = piece.validateMove(movement, gameState)
-
-                if (validator is edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultValid) {
+                if (validator is ValidatorResponse.ValidatorResultValid) {
                     validMoves.add(movement)
                 }
             }
@@ -72,9 +82,22 @@ class CheckMateValidator : WinCondition {
         return validMoves
     }
 
-    private fun moveIsNotCheck(movement: Movement, gameState: GameState) : Boolean{
-        val nextGameState : GameState = gameState.movePiece(movement)
-        return !checkValidator.validate(nextGameState)
+    private fun moveIsNotCheck(movement: Movement, gameState: GameState, kingColor: Color): Boolean {
+        val newGameState = simulateMove(movement, gameState) //simulo el movimiento
+        return !CheckValidator().validateCheck(newGameState) //me fijo si me deja al actual turno en check
+    }
+
+    private fun simulateMove(movement: Movement, gameState: GameState): GameState {
+        val newBoard = gameState.getActualBoard().update(movement)
+        val newBoards = gameState.getBoards().toMutableList()
+        newBoards.add(newBoard)
+        return GameStateImp(
+            newBoards,
+            gameState.getWinCondition(),
+            gameState.getTurnManager(),
+            gameState.getPreConditions(),
+            gameState.getPostConditions()
+        )
     }
 
 }

@@ -27,7 +27,7 @@ class GameFactory {
                 listOf(board),
                 CheckMateValidator(),
                 ClassicChessTurnValidator(Color.WHITE),
-                listOf(),
+                listOf(IsNotCheckValidator()),
                 listOf(PromotionValidator())
             )
         }

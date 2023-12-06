@@ -14,7 +14,7 @@ import edu.austral.dissis.common.validator.ValidatorResponse
  */
 class CheckValidator {
 
-    fun validate( gameState: GameState): Boolean {
+    fun validateCheck(gameState: GameState): Boolean {
 
         val kingColor: Color = gameState.getCurrentTurn()
         val actualBoard: Board = gameState.getActualBoard()

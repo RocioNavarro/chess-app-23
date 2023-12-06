@@ -1,31 +1,35 @@
 package edu.austral.dissis.chess.validator.postCondition
 
-import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.common.game.GameStateImp
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.validator.ValidatorResponse
 
-// Usamos el checkValidator porque es mas facil negarlo que checkear si en todas las jugadas no queda en jaque
-// Es una preCondition del game
+/** Usamos el checkValidator porque es mas facil negarlo que checkear si en todas las jugadas no queda en jaque */
 class IsNotCheckValidator : edu.austral.dissis.common.validator.Validator {
 
-    private val checkValidator : CheckValidator =
-        CheckValidator()
+    private val checkValidator = CheckValidator()
 
-    override fun validate(movement: Movement, gameState: GameState): edu.austral.dissis.common.validator.ValidatorResponse {
+    override fun validate(movement: Movement, gameState: GameState): ValidatorResponse {
+        val newGameState = simulateMove(movement, gameState) /** simulo el movimiento */
+        return if (checkValidator.validateCheck(newGameState)) { /** me fijo si me deja al actual turno en check */
+            ValidatorResponse.ValidatorResultInvalid("Estás en jaque!")
+        } else {
+            ValidatorResponse.ValidatorResultValid("No estás en jaque")
+        }
+    }
 
-        val boardAux : Board = gameState.getActualBoard().update(movement)
-        val gameAuxBoards = gameState.getBoards().toMutableList()
-        gameAuxBoards.add(boardAux)
-        val gameAux = GameStateImp(gameAuxBoards,
+
+    private fun simulateMove(movement: Movement, gameState: GameState): GameState {
+        val newBoard = gameState.getActualBoard().update(movement)
+        val newBoards = gameState.getBoards().toMutableList()
+        newBoards.add(newBoard)
+        return GameStateImp(
+            newBoards,
             gameState.getWinCondition(),
             gameState.getTurnManager(),
             gameState.getPreConditions(),
-            gameState.getPostConditions())
-        return if ( checkValidator.validate(gameAux) ) {
-            edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultInvalid("El rey queda en jaque")
-        } else {
-            edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultValid("El rey no queda en jaque")
-        }
+            gameState.getPostConditions()
+        )
     }
 }
