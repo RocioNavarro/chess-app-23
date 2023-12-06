@@ -5,14 +5,14 @@ import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.validator.ValidatorResponse
 
-/** Usamos el checkValidator porque es mas facil negarlo que checkear si en todas las jugadas no queda en jaque */
+/** Usamos el checkValidator para tener acá la union con el state */
 class IsNotCheckValidator : edu.austral.dissis.common.validator.Validator {
 
     private val checkValidator = CheckValidator()
 
     override fun validate(movement: Movement, gameState: GameState): ValidatorResponse {
         val newGameState = simulateMove(movement, gameState) /** simulo el movimiento */
-        return if (checkValidator.validateCheck(newGameState)) { /** me fijo si me deja al actual turno en check */
+        return if (checkValidator.validateCheck(newGameState, gameState.getCurrentTurn())) { /** me fijo si me deja al actual turno en check */
             ValidatorResponse.ValidatorResultInvalid("Estás en jaque!")
         } else {
             ValidatorResponse.ValidatorResultValid("No estás en jaque")

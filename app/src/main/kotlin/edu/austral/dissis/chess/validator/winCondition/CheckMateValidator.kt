@@ -27,25 +27,6 @@ class CheckMateValidator : WinCondition {
         return true
     }
 
-    private fun getKingPosition(board: Board, kingColor: Color): Position? {
-        board.getOccupiedPositions().forEach {
-                coordinate ->
-            val piece = board.getPieceByPosition(coordinate)
-            if (isKing(piece) && matchesColor(piece, kingColor)) {
-                return coordinate
-            }
-        }
-        return null
-    }
-
-    private fun isKing(piece: Piece?): Boolean{
-        return (piece?.getType() == PieceType.KING)
-    }
-
-    private fun matchesColor(piece: Piece?, color: Color): Boolean{
-        return (piece?.getColor() == color)
-    }
-
     private fun getPositionsByColor(board: Board, color: Color) : List<Position> {
         val occupiedPositions = mutableListOf<Position>()
 
@@ -84,7 +65,7 @@ class CheckMateValidator : WinCondition {
 
     private fun moveIsNotCheck(movement: Movement, gameState: GameState, kingColor: Color): Boolean {
         val newGameState = simulateMove(movement, gameState) //simulo el movimiento
-        return !CheckValidator().validateCheck(newGameState) //me fijo si me deja al actual turno en check
+        return !CheckValidator().validateCheck(newGameState, kingColor) //me fijo si me deja al actual turno en check
     }
 
     private fun simulateMove(movement: Movement, gameState: GameState): GameState {

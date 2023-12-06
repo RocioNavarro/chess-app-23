@@ -14,20 +14,31 @@ import edu.austral.dissis.common.validator.ValidatorResponse
  */
 class CheckValidator {
 
-    fun validateCheck(gameState: GameState): Boolean {
+    fun validateCheck(gameState: GameState, kingColor: Color): Boolean {
 
-        val kingColor: Color = gameState.getCurrentTurn()
         val actualBoard: Board = gameState.getActualBoard()
         val kingPosition: Position = getKingPosition(actualBoard, kingColor)?: throw NoSuchElementException("ERROR: No hay rey")
-        val enemyCoordinates: List<Position> = actualBoard.getOccupiedPositions()
 
         /** Recorro todas las piezas enemigas para ver si alguna puede atacar al rey desde su position */
-        for(position in enemyCoordinates) {
-            if (pieceAttacksKing(gameState, position, kingColor, kingPosition)) {
+        for(position in getPositionsByDifferentColor(actualBoard,kingColor)) {
+            if (pieceAttacksKing(gameState, position, kingPosition)) {
                 return true
             }
         }
         return false
+    }
+
+    private fun getPositionsByDifferentColor(board: Board, color: Color) : List<Position> {
+        val list : MutableList<Position> = mutableListOf()
+        board.getOccupiedPositions().forEach{
+            position ->
+            val piece = board.getPieceByPosition(position)
+            if (piece != null) {
+                if(piece.getColor() != color)
+                    list.add(position)
+            }
+        }
+        return list
     }
 
     private fun getKingPosition(actualBoard: Board, color: Color): Position? {
@@ -42,11 +53,9 @@ class CheckValidator {
     /** Veo si una pieza ubicada en position puede atacar al rey */
     private fun pieceAttacksKing(gameState: GameState,
                                  position: Position,
-                                 kingColor: Color,
                                  kingPosition: Position
     ): Boolean {
         /** Veo si la pieza en position es enemiga */
-        if (gameState.getActualBoard().getPieceByPosition(position)?.getColor() != kingColor) {
             val piece : Piece = gameState.getActualBoard().getPieceByPosition(position) ?: throw NoSuchElementException("ERROR: No hay pieza en esa posicion")
             when (
                 /** Veo si la pieza en position puede moverse a la kingPosition */
@@ -55,8 +64,6 @@ class CheckValidator {
                 is ValidatorResponse.ValidatorResultValid -> return true
                 is ValidatorResponse.ValidatorResultInvalid -> return false
             }
-        }
-        return false
     }
 
 

@@ -31,7 +31,7 @@ class GameServer(private var gameState: GameState,
         return gameState
     }
 
-    /** Le dice al cliente que teine que inicializar su juego con esta info (estas piezas) */
+    /** Le dice al cliente que tiene que inicializar su juego con esta info (estas piezas) */
     fun sendInitialize(clientID: String, payload: InitializePayload){
         server.sendMessage(clientID, Message("initialize", payload))
     }

@@ -72,8 +72,9 @@ class GameStateImp (private val boards : List<Board>,
 
     private fun validatePreConditions(movement: Movement): ValidatorResponse {
         for (preCondition in getPreConditions()) {
-            if (preCondition.validate(movement, this) is ValidatorResponse.ValidatorResultInvalid) {
-                return ValidatorResponse.ValidatorResultInvalid("No se cumple una precondición")
+            val result = preCondition.validate(movement, this)
+            if (result is ValidatorResponse.ValidatorResultInvalid) {
+                return result
             }
         }
         return ValidatorResponse.ValidatorResultValid("OK")
