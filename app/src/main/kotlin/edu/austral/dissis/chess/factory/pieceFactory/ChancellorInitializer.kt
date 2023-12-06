@@ -27,14 +27,13 @@ class ChancellorInitializer : PieceInitializer {
             AndValidator(
                 listOf(
                     LegalPositionValidator(),
-                    OrValidator(listOf(IsEnemyValidator(), EmptyDestinationValidator())),
+                    OrValidator(listOf(
+                        KnightMoveValidator(),
+                        AndValidator(listOf(VerticalMoveValidator(), EmptyVerticalValidator())),
+                        AndValidator(listOf(HorizontalMoveValidator(), EmptyHorizontalValidator()))
+                    )),
                     OrValidator(
-                        listOf(
-                            AndValidator(listOf(HorizontalMoveValidator(), EmptyHorizontalValidator())),
-                            AndValidator(listOf(VerticalMoveValidator(), EmptyVerticalValidator())),
-                        )
-                    ),
-                    KnightMoveValidator()
+                        listOf(IsEnemyValidator(), EmptyDestinationValidator()))
                 )
             )
         )

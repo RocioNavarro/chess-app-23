@@ -27,17 +27,13 @@ class ArchbishopInitializer : PieceInitializer {
             AndValidator(
                 listOf(
                     LegalPositionValidator(),
-                    DiagonalMoveValidator(),
-                    EmptyDiagonalValidator(),
-
+                    OrValidator(listOf(
+                        KnightMoveValidator(),
+                        AndValidator(listOf(DiagonalMoveValidator(), EmptyDiagonalValidator()))
+                    )),
                     OrValidator(
-                        listOf(
-                            IsEnemyValidator(),
-                            EmptyDestinationValidator()
-                        )
-                    ),
-                    KnightMoveValidator()
-                )
+                        listOf(IsEnemyValidator(), EmptyDestinationValidator())),
+                    )
             )
         )
     }

@@ -83,7 +83,7 @@ class BoardFactory {
                 map = map.plus(Position(8, i) to PawnInitializer().initialize(Color.BLACK))
             }
 
-            return RectangularBoard(10, 8, map)
+            return RectangularBoard(10, 10, map)
         }
     }
 }
