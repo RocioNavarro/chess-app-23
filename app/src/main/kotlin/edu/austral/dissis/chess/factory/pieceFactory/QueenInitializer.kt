@@ -27,7 +27,7 @@ class QueenInitializer : PieceInitializer {
                     OrValidator(listOf(IsEnemyValidator(), EmptyDestinationValidator())),
                     OrValidator(
                         listOf(
-                            AndValidator( listOf(HorizontalMoveValidator(), EmptyHorizontalValidator())),
+                            AndValidator(listOf(HorizontalMoveValidator(), EmptyHorizontalValidator())),
                             AndValidator(listOf(VerticalMoveValidator(),EmptyVerticalValidator())),
                             AndValidator(listOf(DiagonalMoveValidator(), EmptyDiagonalValidator()))
                         )

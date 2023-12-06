@@ -34,7 +34,10 @@ class EmptyDiagonalValidator : Validator {
         while (currentRow != to.row && currentColumn != to.column) {
             currentRow += if (currentRow < to.row) 1 else -1
             currentColumn += if (currentColumn < to.column) 1 else -1
-            path.add(Position(currentRow, currentColumn))
+            if(currentRow == to.row && currentColumn == to.column) continue
+            else{
+                path.add(Position(currentRow, currentColumn))
+            }
         }
 
         return path

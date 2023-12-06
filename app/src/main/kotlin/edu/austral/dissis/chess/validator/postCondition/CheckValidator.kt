@@ -47,7 +47,7 @@ class CheckValidator {
     ): Boolean {
         /** Veo si la pieza en position es enemiga */
         if (gameState.getActualBoard().getPieceByPosition(position)?.getColor() != kingColor) {
-            val piece : Piece = gameState.getActualBoard().getPieceByPosition(position) ?: throw NoSuchElementException("No esta la pieza capo")
+            val piece : Piece = gameState.getActualBoard().getPieceByPosition(position) ?: throw NoSuchElementException("ERROR: No hay pieza en esa posicion")
             when (
                 /** Veo si la pieza en position puede moverse a la kingPosition */
                 piece.validateMove(Movement(position, kingPosition), gameState  )
@@ -58,4 +58,7 @@ class CheckValidator {
         }
         return false
     }
+
+
+
 }

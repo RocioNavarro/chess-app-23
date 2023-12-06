@@ -1,5 +1,6 @@
 package edu.austral.dissis.chess.factory
 
+import edu.austral.dissis.chess.validator.postCondition.IsNotCheckValidator
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.common.game.GameStateImp
 import edu.austral.dissis.common.piece.Color
@@ -15,7 +16,7 @@ class GameFactory {
                 listOf(board),
                 CheckMateValidator(),
                 ClassicChessTurnValidator(Color.WHITE),
-                listOf(),
+                listOf(IsNotCheckValidator()),
                 listOf(PromotionValidator())
             )
         }
