@@ -2,7 +2,7 @@ package edu.austral.dissis.chess.validator.postCondition
 
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.board.Board
-import edu.austral.dissis.chess.game.GameState
+import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece
@@ -21,7 +21,7 @@ class CheckValidator {
         val kingPosition: Position = getKingPosition(actualBoard, kingColor)?: throw NoSuchElementException("ERROR: No hay rey")
         val enemyCoordinates: List<Position> = actualBoard.getOccupiedPositions()
 
-        // Recorro todas las piezas enemigas para ver si alguna puede atacar al rey desde su position
+        /** Recorro todas las piezas enemigas para ver si alguna puede atacar al rey desde su position */
         for(position in enemyCoordinates) {
             if (pieceAttacksKing(gameState, position, kingColor, kingPosition)) {
                 return true
@@ -39,21 +39,21 @@ class CheckValidator {
         return null
     }
 
-    // Veo si una pieza ubicada en position puede atacar al rey
+    /** Veo si una pieza ubicada en position puede atacar al rey */
     private fun pieceAttacksKing(gameState: GameState,
                                  position: Position,
                                  kingColor: Color,
                                  kingPosition: Position
     ): Boolean {
-        // veo si la pieza en position es enemiga
+        /** Veo si la pieza en position es enemiga */
         if (gameState.getActualBoard().getPieceByPosition(position)?.getColor() != kingColor) {
             val piece : Piece = gameState.getActualBoard().getPieceByPosition(position) ?: throw NoSuchElementException("No esta la pieza capo")
             when (
-                // veo si la pieza en position puede moverse a la kingPosition
+                /** Veo si la pieza en position puede moverse a la kingPosition */
                 piece.validateMove(Movement(position, kingPosition), gameState  )
             ) {
-                is edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultValid -> return true
-                is edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultInvalid -> return false
+                is ValidatorResponse.ValidatorResultValid -> return true
+                is ValidatorResponse.ValidatorResultInvalid -> return false
             }
         }
         return false

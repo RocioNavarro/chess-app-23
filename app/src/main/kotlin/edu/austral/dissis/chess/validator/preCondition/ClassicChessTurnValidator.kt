@@ -1,6 +1,6 @@
-package edu.austral.dissis.chess.validator.preCondition.turnCondition
+package edu.austral.dissis.chess.validator.preCondition
 
-import edu.austral.dissis.chess.game.GameState
+import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece
@@ -19,15 +19,15 @@ class ClassicChessTurnValidator(private val current: Color) : TurnValidator {
         }
     }
 
-    override fun validateTurn(movement: Movement, gameState: GameState): edu.austral.dissis.common.validator.ValidatorResponse {
+    override fun validateTurn(movement: Movement, gameState: GameState): ValidatorResponse {
         val pieceToMove: Piece? = getPiece(movement, gameState)
 
         if (pieceToMove != null) {
             if (pieceToMove.getColor() == this.current) {
-                return edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultValid("Es tu turno")
+                return ValidatorResponse.ValidatorResultValid("Es tu turno")
             }
         }
-        return edu.austral.dissis.common.validator.ValidatorResponse.ValidatorResultInvalid("ERROR: No es tu turno")
+        return ValidatorResponse.ValidatorResultInvalid("ERROR: No es tu turno")
     }
 
     private fun getPiece (movement: Movement, gameState: GameState): Piece? {

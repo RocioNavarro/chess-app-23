@@ -1,11 +1,11 @@
-package edu.austral.dissis.chess.game
+package edu.austral.dissis.common.game
 
 import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.validator.Validator
 import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
-import edu.austral.dissis.chess.validator.preCondition.turnCondition.TurnValidator
+import edu.austral.dissis.chess.validator.preCondition.TurnValidator
 import edu.austral.dissis.common.validator.WinCondition
 
 class FinishGameState (private val boards : List<Board>,

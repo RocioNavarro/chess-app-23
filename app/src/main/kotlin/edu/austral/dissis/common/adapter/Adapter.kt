@@ -1,14 +1,14 @@
 package edu.austral.dissis.common.adapter
 
 import edu.austral.dissis.common.board.Board
-import edu.austral.dissis.chess.game.FinishGameState
-import edu.austral.dissis.chess.game.GameState
-import edu.austral.dissis.chess.game.InvalidMoveGameState
+import edu.austral.dissis.common.game.FinishGameState
+import edu.austral.dissis.common.game.GameState
+import edu.austral.dissis.common.game.InvalidMoveGameState
 import edu.austral.dissis.chess.gui.*
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.Position
-import edu.austral.dissis.chess.game.GameStateImp
+import edu.austral.dissis.common.game.GameStateImp
 
 class Adapter(private var gameState: GameState) : GameEngine {
 

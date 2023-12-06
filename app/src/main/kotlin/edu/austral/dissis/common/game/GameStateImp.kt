@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.game
+package edu.austral.dissis.common.game
 
 import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.chess.movement.Movement
@@ -8,14 +8,14 @@ import edu.austral.dissis.common.validator.Validator
 import edu.austral.dissis.common.validator.ValidatorResponse
 import edu.austral.dissis.chess.validator.postCondition.PostConditionResult
 import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
-import edu.austral.dissis.chess.validator.preCondition.turnCondition.TurnValidator
+import edu.austral.dissis.chess.validator.preCondition.TurnValidator
 import edu.austral.dissis.common.validator.WinCondition
 
 class GameStateImp (private val boards : List<Board>,
                     private val winCondition: WinCondition,
                     private val turnManager: TurnValidator,
                     private val preConditions: List<Validator>,
-                    private val postConditions: List<PostConditionValidator>) : GameState{
+                    private val postConditions: List<PostConditionValidator>) : GameState {
 
     override fun getActualBoard(): Board {
         return boards.last();
@@ -67,12 +67,7 @@ class GameStateImp (private val boards : List<Board>,
     }
 
     private fun invalidMove(response: ValidatorResponse.ValidatorResultInvalid): GameState {
-        return InvalidMoveGameState(this.getBoards(),
-            this.getWinCondition(),
-            this.getTurnManager(),
-            this.getPreConditions(),
-            this.getPostConditions(),
-            response.message)
+        return InvalidMoveGameState(this, response.message)
     }
 
     private fun validatePreConditions(movement: Movement): ValidatorResponse {
