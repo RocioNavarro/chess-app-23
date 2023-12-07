@@ -26,6 +26,5 @@ class BoardFactoryTest {
         Assert.assertEquals(Color.BLACK, chessBoard.getPieceByPosition(Position(7, 7))?.getColor())
         Assert.assertEquals(PieceType.ROOK, chessBoard.getPieceByPosition(Position(7, 7))?.getType())
 
-
     }
 }

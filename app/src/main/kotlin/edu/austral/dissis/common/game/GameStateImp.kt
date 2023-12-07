@@ -59,7 +59,7 @@ data class GameStateImp (private val boards : List<Board>,
         val piece : Piece = this.getActualBoard().getPieceByPosition(movement.from)!!
         piece.incrementMoveCounter()
 
-        return GameStateImp(gamePostConditions.getBoards(), this.getWinCondition(), this.getTurnManager().nextTurn(), this.getPreConditions(), this.getPostConditions())
+        return GameStateImp(gamePostConditions.getBoards(), this.getWinCondition(), this.getTurnManager().nextTurn(gamePostConditions), this.getPreConditions(), this.getPostConditions())
     }
 
     private fun validateTurn(movement: Movement): ValidatorResponse {

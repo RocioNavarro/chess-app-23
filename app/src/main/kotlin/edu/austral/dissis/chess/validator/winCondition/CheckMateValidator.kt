@@ -13,7 +13,7 @@ import edu.austral.dissis.common.validator.winCondition.WinCondition
 class CheckMateValidator : WinCondition {
 
     override fun isWin(gameState: GameState): Boolean {
-        val kingColor = gameState.getTurnManager().nextTurn().getTurn() //el color del rey es el del próximo turno, que seria el enemigo
+        val kingColor = gameState.getTurnManager().nextTurn(gameState).getTurn() //el color del rey es el del próximo turno, que seria el enemigo
         val board = gameState.getActualBoard()
         val positionsOfAlliedKingPieces = getPositionsByColor(board, kingColor)
         val possibleMoves = getPossibleMoves(positionsOfAlliedKingPieces, gameState)

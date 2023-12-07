@@ -12,7 +12,7 @@ class ChessTurnValidator(private val current: Color) : TurnValidator {
         return current
     }
 
-    override fun nextTurn(): TurnValidator {
+    override fun nextTurn(gameState: GameState): TurnValidator {
         if (current == Color.BLACK) {
             return ChessTurnValidator(Color.WHITE)
         } else {

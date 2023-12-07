@@ -10,7 +10,7 @@ import edu.austral.dissis.common.validator.TurnValidator
 import edu.austral.dissis.common.validator.ValidatorResponse
 import org.junit.Test
 
-class ChessTurnManagerTest {
+class ChessTurnValidatorTest {
 
     private val turnManager: TurnValidator = ChessTurnValidator(Color.WHITE)
     private val gameState: GameState = createChessNormalGame()
@@ -22,13 +22,13 @@ class ChessTurnManagerTest {
 
     @Test
     fun `change turn`() {
-        val newTurnManager = turnManager.nextTurn()
+        val newTurnManager = turnManager.nextTurn(gameState)
         assert(newTurnManager.getTurn() == Color.BLACK)
     }
 
     @Test
     fun `change turn twice`() {
-        val newTurnManager = turnManager.nextTurn().nextTurn()
+        val newTurnManager = turnManager.nextTurn(gameState).nextTurn(gameState)
         assert(newTurnManager.getTurn() == Color.WHITE)
     }
 

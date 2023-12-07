@@ -7,13 +7,12 @@ import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.common.validator.ValidatorResponse
 
-/** todo cambiar */
 class CheckersTurnValidator(private val color: Color) : TurnValidator {
     override fun getTurn(): Color {
         return color
     }
 
-    override fun nextTurn(): TurnValidator {
+    override fun nextTurn(gameState: GameState): TurnValidator {
         return if (color == Color.WHITE) CheckersTurnValidator(Color.BLACK) else CheckersTurnValidator(Color.WHITE)
     }
 

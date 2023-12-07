@@ -8,7 +8,7 @@ interface TurnValidator {
 
     fun getTurn() : Color
 
-    fun nextTurn() : TurnValidator
+    fun nextTurn(gameState: GameState) : TurnValidator
 
     /** Guardar el movimiento me va a servir para la implementacion en damas para cuando coma doble */
     fun validateTurn(movement: Movement, gameState: GameState) : ValidatorResponse

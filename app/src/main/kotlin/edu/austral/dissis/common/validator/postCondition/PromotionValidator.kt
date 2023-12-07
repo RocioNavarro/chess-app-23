@@ -29,14 +29,14 @@ class PromotionValidator(private val initializer: PieceInitializer, private val 
 
     private fun promote(position: Position, gameState: GameState, map: MutableMap<Position, Piece>) {
         val piece = gameState.getActualBoard().getPieceByPosition(position)
-        if (isPawn(piece)) {
+        if (isPiece(piece)) {
             /** Obtengo el color del peón para intercambiarlo por una reina de ese equipo */
             val color = piece?.getColor() ?: return
             map[position] = initializer.initialize(color, piece!!.getId())
         }
     }
 
-    private fun isPawn(piece: Piece?): Boolean {
+    private fun isPiece(piece: Piece?): Boolean {
         return piece?.getType() == typeToCheck
     }
 
