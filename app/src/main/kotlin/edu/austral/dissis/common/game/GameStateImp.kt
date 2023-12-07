@@ -11,7 +11,7 @@ import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
 import edu.austral.dissis.common.validator.TurnValidator
 import edu.austral.dissis.common.validator.winCondition.WinCondition
 
-class GameStateImp (private val boards : List<Board>,
+data class GameStateImp (private val boards : List<Board>,
                     private val winCondition: WinCondition,
                     private val turnManager: TurnValidator,
                     private val preConditions: List<Validator>,

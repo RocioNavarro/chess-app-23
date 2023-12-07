@@ -17,7 +17,7 @@ class CheckValidator {
     fun validateCheck(gameState: GameState, kingColor: Color): Boolean {
 
         val actualBoard: Board = gameState.getActualBoard()
-        val kingPosition: Position = getKingPosition(actualBoard, kingColor)?: throw NoSuchElementException("ERROR: No hay rey")
+        val kingPosition: Position = getKingPosition(actualBoard, kingColor)?: return true
 
         /** Recorro todas las piezas enemigas para ver si alguna puede atacar al rey desde su position */
         for(position in getPositionsByDifferentColor(actualBoard,kingColor)) {
