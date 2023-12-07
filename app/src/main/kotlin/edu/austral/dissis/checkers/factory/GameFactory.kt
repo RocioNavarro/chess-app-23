@@ -15,7 +15,7 @@ fun createCheckersNormalGame(): GameState {
     return GameStateImp(
         listOf(board),
         ExtinctionCondition(),
-        CheckersTurnValidator(Color.WHITE),
+        CheckersTurnValidator(Color.WHITE, listOf()),
         listOf(),
         listOf(HasEatenValidator(), PromotionValidator(QueenInitializer(), PieceType.PAWN))
     )

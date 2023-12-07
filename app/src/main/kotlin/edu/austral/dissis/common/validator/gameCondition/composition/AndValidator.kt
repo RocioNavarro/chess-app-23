@@ -15,6 +15,7 @@ class AndValidator( private val validators : List<Validator>) :
             when (validator.validate(movement, gameState)){
                 is ValidatorResponse.ValidatorResultValid -> continue
                 is ValidatorResponse.ValidatorResultInvalid -> return ValidatorResponse.ValidatorResultInvalid("Invalid movement")
+                else -> {return ValidatorResponse.ValidatorResultInvalid("Tengo seal interface y me pide un else") }
             }
         }
         return ValidatorResponse.ValidatorResultValid("And composition OK")

@@ -27,28 +27,23 @@ class ManInitializer : PieceInitializer {
             color,
             PieceType.PAWN,
             OrValidator(
-                listOf(
-                    /** movimiento diagonal */
+                listOf( /** movimiento diagonal */
                     AndValidator(listOf(
                         DiagonalMoveValidator(),
                         LimitedMovementValidator(1),
                         VerticalSenseValidator(sense),
                         EmptyDestinationValidator()
                     )),
-
-                    /** comer la pieza que salta en diagonal */
-                    AndValidator(listOf(
+                    AndValidator( /** comer la pieza que salta en diagonal */
+                        listOf(
                         VerticalSenseValidator(sense),
                         DiagonalMoveValidator(),
                         ExactMovementValidator(2),
                         EnemyBetween(),
                         EmptyDestinationValidator()
                     ))
-
-
                 )
             )
         )
     }
-
 }

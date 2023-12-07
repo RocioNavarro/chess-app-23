@@ -26,14 +26,12 @@ class QueenInitializer : PieceInitializer {
             color,
             PieceType.QUEEN,
             OrValidator(
-                listOf(
-                    /** Puede moverse un lugar hacia cualquier diagonal */
+                listOf( /** Puede moverse un lugar hacia cualquier diagonal */
                     AndValidator(listOf(
                         DiagonalMoveValidator(),
                         LimitedMovementValidator(1),
                         EmptyDestinationValidator()
                     )),
-
                     /** Comer en diagonal */
                     AndValidator(listOf(
                         DiagonalMoveValidator(),

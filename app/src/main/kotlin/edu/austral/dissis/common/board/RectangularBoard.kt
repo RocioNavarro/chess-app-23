@@ -6,55 +6,57 @@ import edu.austral.dissis.common.piece.Piece
 
 class RectangularBoard(private val sizeX: Int,
                        private val sizeY: Int,
-                       private val piecesPositions: Map<Position, Piece> ) : Board {
+                       private val piecePositions: Map<Position, Piece> ) : Board {
+
+
     override fun getSizeX(): Int {
-        return sizeX;
+        return sizeX
     }
 
     override fun getSizeY(): Int {
-        return sizeY;
-    }
-
-    override fun getPiecesPositions(): Map<Position, Piece> {
-        return piecesPositions;
-    }
-
-    override fun getPositionByPiece(piece: Piece): Position? {
-        for (position in piecesPositions.keys){
-            if (piece == piecesPositions[position]){
-                return position;
-            }
-        }
-        return null;
+        return sizeY
     }
 
     override fun getPieceByPosition(position: Position): Piece? {
-        return piecesPositions[position];
+        return piecePositions[position]
     }
 
-    override fun getOccupiedPositions(): List<Position> {
-        return piecesPositions.keys.toList()
+    override fun getPositionByPiece(piece: Piece): Position? {
+        for (position in piecePositions.keys) {
+            if (piecePositions[position]?.getId() == piece.getId()) {
+                return position
+            }
+        }
+        return null
     }
 
-    override fun getPieces(): List<Piece> {
-        return piecesPositions.values.toList()
+    override fun getPiecesPositions(): Map<Position, Piece> {
+        return piecePositions
     }
 
     override fun update(movement: Movement): Board {
-        val newPiecePositions = piecesPositions.toMutableMap()
+        val newPiecePositions = piecePositions.toMutableMap()
         newPiecePositions.remove(movement.from)
-        newPiecePositions[movement.to] = piecesPositions[movement.from]!!
+        newPiecePositions[movement.to] = piecePositions[movement.from]!!
         return RectangularBoard(sizeX, sizeY, newPiecePositions)
     }
 
+    override fun getOccupiedPositions(): List<Position> {
+        return piecePositions.keys.toList()
+    }
+
     override fun removePieceByPosition(position: Position): Board {
-        val newPiecePositions = piecesPositions.toMutableMap()
+        val newPiecePositions = piecePositions.toMutableMap()
         newPiecePositions.remove(position)
         return RectangularBoard(sizeX, sizeY, newPiecePositions)
     }
 
+    override fun getPieces(): List<Piece> {
+        return piecePositions.values.toList()
+    }
+
     override fun updatePieceByPosition(position: Position, piece: Piece): Board {
-        val newPiecePositions = piecesPositions.toMutableMap()
+        val newPiecePositions = piecePositions.toMutableMap()
         newPiecePositions[position] = piece
         return RectangularBoard(sizeX, sizeY, newPiecePositions)
     }

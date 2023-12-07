@@ -12,12 +12,12 @@ class OrValidator(private val validators: List<Validator>) :
         for (validator: Validator in validators) {
             /** Pattern matching para evaluar las respuestas de cada validador de la lista. */
             when ( validator.validate(movement, gameState)) {
-                /** Por ser un OR, si un validator resulte valido, ya se retorna OK*/
+                /** Por ser un OR, si un validator resulte valido, ya se retorna OK */
                 is ValidatorResponse.ValidatorResultValid ->  return ValidatorResponse.ValidatorResultValid("Or composition is OK")
                 is ValidatorResponse.ValidatorResultInvalid ->  continue
             }
 
         }
-        return ValidatorResponse.ValidatorResultInvalid("Invalid movement")
+        return ValidatorResponse.ValidatorResultInvalid("OR invalid movement")
     }
 }
