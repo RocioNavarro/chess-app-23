@@ -61,7 +61,6 @@ class CheckersTurnValidator(private val color: Color, private val posibleMoves: 
         }
         val previousBoard = gameState.getBoards()[gameState.getBoards().size - 2]
         val movement = getLatestMovement(previousBoard, board)
-        val piece = board.getPieceByPosition(movement.to) ?: return false
         val posibleEatenMoves = getPosibleEatenMovesByPosition(movement.to, gameState)
 
         return posibleEatenMoves.isNotEmpty()
@@ -71,7 +70,6 @@ class CheckersTurnValidator(private val color: Color, private val posibleMoves: 
     private fun getPosibleEatenMovesByPosition(pos: Position, gameState: GameState): List<Movement> {
         val board = gameState.getActualBoard()
         val piece = board.getPieceByPosition(pos) ?: return listOf()
-        val pieceColor = piece.getColor()
         val posibleEatenMoves = mutableListOf<Movement>()
         val posibleMoves = getPosibleMovesByPosition(pos, gameState)
         for (move in posibleMoves) {
@@ -86,7 +84,7 @@ class CheckersTurnValidator(private val color: Color, private val posibleMoves: 
         val pieceToMove: Piece? = getPiece(movement, gameState)
 
         if (posibleMoves.isNotEmpty() && !posibleMoves.contains(movement)) {
-            return ValidatorResponse.ValidatorResultInvalid("Con la pieza que moviste podes comer otro oponente" )
+            return ValidatorResponse.ValidatorResultInvalid("Tenes otra pieza para comer con la que comiste recién" )
         }
         if (pieceToMove != null) {
             if (pieceToMove.getColor() == this.color) {

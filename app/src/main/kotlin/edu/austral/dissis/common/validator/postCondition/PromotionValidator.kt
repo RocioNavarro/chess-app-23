@@ -17,7 +17,7 @@ class PromotionValidator(private val initializer: PieceInitializer, private val 
         val positionsMap = board.getPiecesPositions().toMutableMap()
 
         /** Recorro la fila 0 y 7 del tablero y llamo a promotePawn con cada position
-         *  promotePawn se va a fijar si la pieza en esa position es un peón y, si lo es, intercambia por reina
+         *  promote() se va a fijar si la pieza en esa position es un peón y, si lo es, intercambia por reina
          */
         for (row in listOf(0, 7)) {
             for (column in 0 until board.getSizeX()) {
@@ -29,10 +29,12 @@ class PromotionValidator(private val initializer: PieceInitializer, private val 
 
     private fun promote(position: Position, gameState: GameState, map: MutableMap<Position, Piece>) {
         val piece = gameState.getActualBoard().getPieceByPosition(position)
-        if (isPiece(piece)) {
-            /** Obtengo el color del peón para intercambiarlo por una reina de ese equipo */
-            val color = piece?.getColor() ?: return
-            map[position] = initializer.initialize(color, piece!!.getId())
+        if (piece != null) {
+            if (isPiece(piece) && piece.getMoveCounter() != 0 ) {
+                /** Obtengo el color del peón para intercambiarlo por una reina de ese equipo */
+                val color = piece?.getColor() ?: return
+                map[position] = initializer.initialize(color, piece!!.getId())
+            }
         }
     }
 

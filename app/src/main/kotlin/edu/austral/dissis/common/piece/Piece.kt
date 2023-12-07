@@ -8,7 +8,7 @@ import edu.austral.dissis.common.validator.ValidatorResponse
 data class Piece(private val id: String,
                  private val color: Color,
                  private val type : PieceType,
-                 val validator : edu.austral.dissis.common.validator.Validator,
+                 val validator : Validator,
                  private var moveCounter : Int = 0){
     fun getMoveCounter(): Int {
         return moveCounter
