@@ -10,6 +10,8 @@ import edu.austral.dissis.common.validator.gameCondition.movement.DiagonalMoveVa
 import edu.austral.dissis.common.validator.gameCondition.movement.HorizontalMoveValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.VerticalMoveValidator
 import edu.austral.dissis.chess.factory.PieceInitializer
+import edu.austral.dissis.chess.validator.movement.CastleLeftValidator
+import edu.austral.dissis.chess.validator.movement.CastleRightValidator
 import edu.austral.dissis.common.validator.preCondition.IsEnemyValidator
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.EmptyDestinationValidator
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.LegalPositionValidator
@@ -26,8 +28,12 @@ class KingInitializer : PieceInitializer {
                 listOf(
                     LegalPositionValidator(),
                     OrValidator(listOf(IsEnemyValidator(), EmptyDestinationValidator())),
-                    OrValidator(listOf(VerticalMoveValidator(), DiagonalMoveValidator(), HorizontalMoveValidator())),
-                    LimitedMovementValidator(1)
+                    OrValidator(listOf(AndValidator(
+                                    listOf(LimitedMovementValidator(1),
+                                           OrValidator(listOf(VerticalMoveValidator(), DiagonalMoveValidator(), HorizontalMoveValidator(),)))),
+                                CastleRightValidator(),
+                                CastleLeftValidator())
+                    ),
                 )
             )
         )
