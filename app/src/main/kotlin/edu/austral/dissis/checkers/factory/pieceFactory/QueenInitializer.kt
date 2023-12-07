@@ -20,26 +20,14 @@ class QueenInitializer : PieceInitializer {
     }
 
     override fun initialize(color: Color, id: String): Piece {
-        val sense = if (color == Color.WHITE) 1 else -1
-
-        return Piece(id,
-            color,
-            PieceType.QUEEN,
+        return Piece(id, color, PieceType.QUEEN,
             OrValidator(
-                listOf( /** Puede moverse un lugar hacia cualquier diagonal */
-                    AndValidator(listOf(
-                        DiagonalMoveValidator(),
-                        LimitedMovementValidator(1),
-                        EmptyDestinationValidator()
-                    )),
-                    /** Comer en diagonal */
-                    AndValidator(listOf(
-                        DiagonalMoveValidator(),
-                        ExactMovementValidator(2),
-                        EnemyBetween(),
-                        EmptyDestinationValidator()
-                    )),
-                    )
+                listOf(
+                    /** Se mueve una posicion hacia cualquier diagonal para adelante o atras */
+                    AndValidator(listOf(DiagonalMoveValidator(), LimitedMovementValidator(1), EmptyDestinationValidator())),
+                    /** Come saltando una pieza en diagonal y cayendo en casillero vacio */
+                    AndValidator(listOf(DiagonalMoveValidator(), ExactMovementValidator(2), EnemyBetween(), EmptyDestinationValidator())),
+                )
             )
         )
     }

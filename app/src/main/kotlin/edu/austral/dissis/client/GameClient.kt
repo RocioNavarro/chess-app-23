@@ -1,7 +1,6 @@
 package edu.austral.dissis.client
 
 import com.fasterxml.jackson.core.type.TypeReference
-import edu.austral.dissis.chess.client.listener.*
 import edu.austral.dissis.chess.gui.GameView
 import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.chess.payload.GameStatePayload

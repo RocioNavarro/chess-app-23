@@ -1,4 +1,4 @@
-package edu.austral.dissis.common.adapter
+package edu.austral.dissis.adapter
 
 import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.common.game.FinishGameState

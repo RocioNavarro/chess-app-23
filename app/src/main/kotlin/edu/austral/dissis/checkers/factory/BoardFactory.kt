@@ -12,26 +12,18 @@ import edu.austral.dissis.common.piece.Piece
 fun createCheckersBoard(): Board {
     val map: MutableMap<Position, Piece> = mutableMapOf()
 
-    for (i in 0..2) {
-        val startColumn = if (i % 2 == 1) 2 else 1 // para que empiece desde la segunda columna para filas impares
-        for (j in startColumn..7 step 2) {
-            map[Position(i, j)] = ManInitializer().initialize(Color.WHITE)
+    for (i in 0 until ROWS) {
+        for (j in 0 until COLUMNS) {
+            // Inicializar fichas blancas en las filas 0 a 2
+            if (i in 0..2 && (i + j) % 2 == 1) {
+                map[Position(i, j)] = ManInitializer().initialize(Color.WHITE)
+            }
+            // Inicializar fichas negras en las filas 5 a 7
+            else if (i in 5 until ROWS && (i + j) % 2 == 1) {
+                map[Position(i, j)] = ManInitializer().initialize(Color.BLACK)
+            }
         }
     }
-
-    map[Position(1, 0)] = ManInitializer().initialize(Color.WHITE)
-
-    for (i in 5..7) {
-        val startColumn =
-            if (i % 2 == 1) 2 else 1 // Start from 2nd column for odd rows and 1st column for even rows
-        for (j in startColumn..7 step 2) {
-            map[Position(i, j)] = ManInitializer().initialize(Color.BLACK)
-        }
-    }
-
-    map[Position(7, 0)] = ManInitializer().initialize(Color.BLACK)
-    map[Position(5, 0)] = ManInitializer().initialize(Color.BLACK)
-
     return RectangularBoard(getWidth(8), getHeight(8), map)
 }
 

@@ -5,8 +5,8 @@ import edu.austral.dissis.chess.movement.Movement
 import edu.austral.dissis.common.validator.Validator
 import edu.austral.dissis.common.validator.ValidatorResponse
 
-/** Verifico que se mueva de forma vertical hacia adelante cuando sense==1 y hacia atras cuando sense==-1 */
-class VerticalSenseValidator(private val sense: Int) : Validator {
+/** Verifico que se mueva hacia adelante cuando sense==1 y hacia atras cuando sense==-1 */
+class ForwardSenseValidator(private val sense: Int) : Validator {
 
     override fun validate(movement: Movement, gameState: GameState): ValidatorResponse {
         val isValidMove = when (sense) {

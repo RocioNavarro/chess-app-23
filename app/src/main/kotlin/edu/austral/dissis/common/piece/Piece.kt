@@ -26,12 +26,12 @@ data class Piece(private val id: String,
         return type
     }
 
-    fun validateMove(movement: Movement, gameState: GameState): edu.austral.dissis.common.validator.ValidatorResponse {
+    fun validateMove(movement: Movement, gameState: GameState): ValidatorResponse {
         return validator.validate(movement, gameState)
     }
 
-    fun incrementMoveCounter(){
-        moveCounter++;
+    fun incrementMoveCounter() : Piece {
+        return this.copy(moveCounter = moveCounter + 1)
     }
 
 }

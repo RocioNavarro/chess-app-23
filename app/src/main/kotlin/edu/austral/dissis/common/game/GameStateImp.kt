@@ -39,7 +39,7 @@ data class GameStateImp (private val boards : List<Board>,
         return winCondition;
     }
 
-    // Valido turno, movimientos, preConditions, postConditions, winConditions, incremento moveCounter
+    /** Valido turno, movimientos, preConditions, postConditions, winConditions, incremento moveCounter */
     override fun movePiece(movement: Movement): GameState {
         val turnResponse : ValidatorResponse = validateTurn(movement)
         if ( turnResponse is ValidatorResponse.ValidatorResultInvalid)          return invalidMove(turnResponse)

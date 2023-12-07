@@ -8,7 +8,6 @@ class RectangularBoard(private val sizeX: Int,
                        private val sizeY: Int,
                        private val piecePositions: Map<Position, Piece> ) : Board {
 
-
     override fun getSizeX(): Int {
         return sizeX
     }
@@ -37,7 +36,8 @@ class RectangularBoard(private val sizeX: Int,
     override fun update(movement: Movement): Board {
         val newPiecePositions = piecePositions.toMutableMap()
         newPiecePositions.remove(movement.from)
-        newPiecePositions[movement.to] = piecePositions[movement.from]!!
+        val piece : Piece = piecePositions[movement.from]!!.incrementMoveCounter()
+        newPiecePositions[movement.to] = piece
         return RectangularBoard(sizeX, sizeY, newPiecePositions)
     }
 

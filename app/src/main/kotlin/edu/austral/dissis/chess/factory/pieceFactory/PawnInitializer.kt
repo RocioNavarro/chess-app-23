@@ -9,7 +9,7 @@ import edu.austral.dissis.common.validator.gameCondition.composition.OrValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.DiagonalMoveValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.VerticalMoveValidator
 import edu.austral.dissis.chess.factory.PieceInitializer
-import edu.austral.dissis.common.validator.gameCondition.movement.VerticalSenseValidator
+import edu.austral.dissis.common.validator.gameCondition.movement.ForwardSenseValidator
 import edu.austral.dissis.common.validator.preCondition.IsEnemyValidator
 import edu.austral.dissis.common.validator.preCondition.IsFirstMoveValidator
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.EmptyDestinationValidator
@@ -35,10 +35,10 @@ class PawnInitializer : PieceInitializer {
                         listOf(
                             AndValidator( /** Primer movimiento */
                                 listOf(IsFirstMoveValidator(), VerticalMoveValidator(), EmptyVerticalValidator(),
-                                       LimitedMovementValidator(2), EmptyDestinationValidator(), VerticalSenseValidator(sense))),
+                                       LimitedMovementValidator(2), EmptyDestinationValidator(), ForwardSenseValidator(sense))),
                             AndValidator( /** Despues del primer movimiento */
                                 listOf(VerticalMoveValidator(), EmptyVerticalValidator(), LimitedMovementValidator(1),
-                                       EmptyDestinationValidator(), VerticalSenseValidator(sense))),
+                                       EmptyDestinationValidator(), ForwardSenseValidator(sense))),
                             AndValidator( /** Para comer otra pieza */
                                 listOf(IsEnemyValidator(), DiagonalMoveValidator(), LimitedMovementValidator(1))
                             )

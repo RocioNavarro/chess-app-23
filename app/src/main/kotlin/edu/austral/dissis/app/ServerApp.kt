@@ -9,7 +9,7 @@ import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.server.gameServer.GameServer
 
 fun main() {
-    GameServer(createGame())
+    GameServer(createGame()) /** Creo la instancia del server y el GameServer lo levanta */
 }
 
 private fun createGame(): GameState {

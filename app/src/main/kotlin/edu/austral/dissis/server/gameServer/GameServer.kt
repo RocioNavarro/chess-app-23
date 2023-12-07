@@ -16,7 +16,7 @@ import edu.austral.ingsis.clientserver.ServerBuilder
 import edu.austral.ingsis.clientserver.netty.server.NettyServerBuilder
 
 
-/** Tiene el juego y lo que construye al server */
+/** Le paso el juego y el builder del server */
 class GameServer(private var gameState: GameState,
                  private val builder: ServerBuilder = NettyServerBuilder.createDefault() ) {
 
@@ -31,11 +31,14 @@ class GameServer(private var gameState: GameState,
         return gameState
     }
 
-    /** Le dice al cliente que tiene que inicializar su juego con esta info (estas piezas) */
+    /** Le dice al cliente que tiene que inicializar su juego con la info del payload (tamaño del tablero, piezas, turno) */
     fun sendInitialize(clientID: String, payload: InitializePayload){
         server.sendMessage(clientID, Message("initialize", payload))
     }
 
+    /** Se llama cuando se mueve una pieza
+     *  A partir del resultado del movimineto, manda a todos los clientes suscriptos (broadcast)
+     *  el mensaje con el payload para que actualicen su UI */
     fun broadcastState(payload: GameStatePayload){
         when ( payload ) {
             is GameStatePayload.SuccessfulMovePayload -> server.broadcast(Message("successfulMove", payload))
@@ -56,10 +59,10 @@ class GameServer(private var gameState: GameState,
 
     private fun initializeServer(): Server {
         return builder
-            .withPort(9300) // asigno el puerto
-            .withConnectionListener(InitializeListener(this)) // asignamos lo que queremos hacer cuando alguien se conecta (el listener que va a usar)
-            .addMessageListener("move", object: TypeReference<Message<Movement>>(){}, MovementListener(this)) // asignamos lo que queremos hacer cuando recibimos un movimiento de un cliente
-            .build() // devuelve el server
+            .withPort(9300)
+            .withConnectionListener(InitializeListener(this)) /** asignamos lo que queremos hacer cuando alguien se conecta */
+            .addMessageListener("move", object: TypeReference<Message<Movement>>(){}, MovementListener(this)) /** suscribe a los listeners */
+            .build() /** devuelve el server */
     }
 
 }

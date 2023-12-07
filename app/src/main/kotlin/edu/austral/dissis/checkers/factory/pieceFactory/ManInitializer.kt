@@ -10,9 +10,10 @@ import edu.austral.dissis.common.validator.gameCondition.composition.AndValidato
 import edu.austral.dissis.common.validator.gameCondition.composition.OrValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.DiagonalMoveValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.ExactMovementValidator
-import edu.austral.dissis.common.validator.gameCondition.movement.VerticalSenseValidator
+import edu.austral.dissis.common.validator.gameCondition.movement.ForwardSenseValidator
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.EmptyDestinationValidator
 
+/** Man es cada dama */
 class ManInitializer : PieceInitializer {
 
     override fun initialize(color: Color): Piece {
@@ -23,25 +24,13 @@ class ManInitializer : PieceInitializer {
     override fun initialize(color: Color, id: String): Piece {
         val sense = if (color == Color.WHITE) 1 else -1
 
-        return Piece(id,
-            color,
-            PieceType.PAWN,
+        return Piece(id, color, PieceType.PAWN,
             OrValidator(
-                listOf( /** movimiento diagonal */
-                    AndValidator(listOf(
-                        DiagonalMoveValidator(),
-                        LimitedMovementValidator(1),
-                        VerticalSenseValidator(sense),
-                        EmptyDestinationValidator()
-                    )),
-                    AndValidator( /** comer la pieza que salta en diagonal */
-                        listOf(
-                        VerticalSenseValidator(sense),
-                        DiagonalMoveValidator(),
-                        ExactMovementValidator(2),
-                        EnemyBetween(),
-                        EmptyDestinationValidator()
-                    ))
+                listOf(
+                    /** Se mueve 1 lugar en diagonal hacia adelante */
+                    AndValidator(listOf(DiagonalMoveValidator(), LimitedMovementValidator(1), ForwardSenseValidator(sense), EmptyDestinationValidator())),
+                    /** Come saltando una pieza en diagonal y cayendo en casillero vacio */
+                    AndValidator(listOf(ForwardSenseValidator(sense), DiagonalMoveValidator(), ExactMovementValidator(2), EnemyBetween(), EmptyDestinationValidator()))
                 )
             )
         )
