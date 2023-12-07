@@ -2,7 +2,7 @@ package edu.austral.dissis.chess.validator.preCondition
 
 import edu.austral.dissis.common.game.GameStateImp
 import edu.austral.dissis.common.game.GameState
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.common.validator.ValidatorResponse
 
 /** Usamos el checkValidator para tener acá la union con el state */

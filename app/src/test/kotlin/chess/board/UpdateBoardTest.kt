@@ -4,7 +4,7 @@ import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.board.RectangularBoard
 import edu.austral.dissis.chess.factory.pieceFactory.PawnInitializer
 import edu.austral.dissis.chess.factory.pieceFactory.RookInitializer
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.PieceType
 import org.junit.Assert

@@ -1,7 +1,7 @@
 package chess.move
 
 import edu.austral.dissis.chess.factory.createKingTestGame
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.game.GameState
 import org.junit.Test

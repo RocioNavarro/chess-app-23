@@ -3,7 +3,7 @@ package edu.austral.dissis.chess.factory.pieceFactory
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.common.piece.PieceType
-import edu.austral.dissis.chess.factory.PieceInitializer
+import edu.austral.dissis.common.piece.PieceInitializer
 import edu.austral.dissis.common.validator.gameCondition.composition.AndValidator
 import edu.austral.dissis.common.validator.gameCondition.composition.OrValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.DiagonalMoveValidator

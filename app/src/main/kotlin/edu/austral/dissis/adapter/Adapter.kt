@@ -5,7 +5,7 @@ import edu.austral.dissis.common.game.FinishGameState
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.common.game.InvalidMoveGameState
 import edu.austral.dissis.chess.gui.*
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.game.GameStateImp

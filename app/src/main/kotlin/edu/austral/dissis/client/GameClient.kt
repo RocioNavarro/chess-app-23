@@ -2,9 +2,9 @@ package edu.austral.dissis.client
 
 import com.fasterxml.jackson.core.type.TypeReference
 import edu.austral.dissis.chess.gui.GameView
-import edu.austral.dissis.chess.movement.Movement
-import edu.austral.dissis.chess.payload.GameStatePayload
-import edu.austral.dissis.chess.payload.InitializePayload
+import edu.austral.dissis.common.movement.Movement
+import edu.austral.dissis.server.payload.GameStatePayload
+import edu.austral.dissis.server.payload.InitializePayload
 import edu.austral.dissis.client.listener.*
 import edu.austral.ingsis.clientserver.Client
 import edu.austral.ingsis.clientserver.Message

@@ -3,7 +3,7 @@ package edu.austral.dissis.chess.validator.winCondition
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.common.game.GameState
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.chess.validator.preCondition.CheckValidator
 import edu.austral.dissis.common.game.GameStateImp

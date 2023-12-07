@@ -1,6 +1,6 @@
 package edu.austral.dissis.chess.factory.pieceFactory
 
-import edu.austral.dissis.chess.factory.PieceInitializer
+import edu.austral.dissis.common.piece.PieceInitializer
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.common.piece.PieceType
@@ -14,7 +14,7 @@ import edu.austral.dissis.common.validator.preCondition.obstacleValidator.EmptyH
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.EmptyVerticalValidator
 import edu.austral.dissis.common.validator.preCondition.obstacleValidator.LegalPositionValidator
 
-class RookInitializer : PieceInitializer{
+class RookInitializer : PieceInitializer {
     override fun initialize(color: Color): Piece {
         val uuid = java.util.UUID.randomUUID().toString()
         return initialize(color, uuid)

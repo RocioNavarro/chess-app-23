@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.payload
+package edu.austral.dissis.server.payload
 
 import edu.austral.dissis.chess.gui.ChessPiece
 import edu.austral.dissis.chess.gui.PlayerColor

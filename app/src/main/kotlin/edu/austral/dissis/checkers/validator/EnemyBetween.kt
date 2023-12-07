@@ -1,6 +1,6 @@
 package edu.austral.dissis.checkers.validator
 
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.common.piece.Color

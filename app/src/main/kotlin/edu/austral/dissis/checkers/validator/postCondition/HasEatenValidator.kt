@@ -1,8 +1,8 @@
 package edu.austral.dissis.checkers.validator.postCondition
 
-import edu.austral.dissis.chess.movement.Movement
-import edu.austral.dissis.chess.validator.postCondition.PostConditionResult
-import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
+import edu.austral.dissis.common.movement.Movement
+import edu.austral.dissis.common.validator.postCondition.PostConditionResult
+import edu.austral.dissis.common.validator.postCondition.PostConditionValidator
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.common.game.GameState

@@ -1,6 +1,6 @@
 package edu.austral.dissis.chess.validator.postCondition
 
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.chess.validator.movement.CastleLeftValidator
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.board.Board
@@ -9,9 +9,11 @@ import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.PieceType
 import edu.austral.dissis.common.validator.Validator
 import edu.austral.dissis.common.validator.ValidatorResponse
+import edu.austral.dissis.common.validator.postCondition.PostConditionResult
+import edu.austral.dissis.common.validator.postCondition.PostConditionValidator
 
 /** Una vez que se valido que se puede hacer el ENROQUE LARGO, aca hago el movimiento de ambas piezas para intercambiar*/
-class CastleLeftPostCondition : PostConditionValidator{
+class CastleLeftPostCondition : PostConditionValidator {
 
     private val castleLeftValidator: Validator = CastleLeftValidator()
     override fun validate(gameState: GameState, updatedBoard: Board): PostConditionResult {

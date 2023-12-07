@@ -1,11 +1,8 @@
 package edu.austral.dissis.common.validator.postCondition
 
-import edu.austral.dissis.chess.factory.PieceInitializer
-import edu.austral.dissis.chess.validator.postCondition.PostConditionResult
-import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
+import edu.austral.dissis.common.piece.PieceInitializer
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.board.Board
-import edu.austral.dissis.common.board.RectangularBoard
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece

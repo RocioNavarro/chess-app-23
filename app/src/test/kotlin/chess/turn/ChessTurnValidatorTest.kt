@@ -1,7 +1,7 @@
 package chess.turn
 
 import edu.austral.dissis.chess.factory.createChessNormalGame
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.chess.validator.preCondition.ChessTurnValidator
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.game.GameState

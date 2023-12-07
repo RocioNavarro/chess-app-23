@@ -9,7 +9,7 @@ import edu.austral.dissis.common.validator.gameCondition.composition.OrValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.DiagonalMoveValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.HorizontalMoveValidator
 import edu.austral.dissis.common.validator.gameCondition.movement.VerticalMoveValidator
-import edu.austral.dissis.chess.factory.PieceInitializer
+import edu.austral.dissis.common.piece.PieceInitializer
 import edu.austral.dissis.chess.validator.movement.CastleLeftValidator
 import edu.austral.dissis.chess.validator.movement.CastleRightValidator
 import edu.austral.dissis.common.validator.preCondition.IsEnemyValidator

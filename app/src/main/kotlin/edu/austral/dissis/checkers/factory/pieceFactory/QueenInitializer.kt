@@ -1,7 +1,7 @@
 package edu.austral.dissis.checkers.factory.pieceFactory
 
 import edu.austral.dissis.checkers.validator.EnemyBetween
-import edu.austral.dissis.chess.factory.PieceInitializer
+import edu.austral.dissis.common.piece.PieceInitializer
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece
 import edu.austral.dissis.common.piece.PieceType

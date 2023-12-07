@@ -3,6 +3,7 @@ package edu.austral.dissis.checkers.factory
 import edu.austral.dissis.COLUMNS
 import edu.austral.dissis.ROWS
 import edu.austral.dissis.checkers.factory.pieceFactory.ManInitializer
+import edu.austral.dissis.checkers.factory.pieceFactory.QueenInitializer
 import edu.austral.dissis.common.Position
 import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.common.board.RectangularBoard
@@ -34,4 +35,12 @@ private fun getWidth(minSize: Int): Int {
 
 private fun getHeight(minSize: Int): Int {
     return if (COLUMNS < minSize) minSize else COLUMNS
+}
+
+fun createCheckersQueenTestBoard() : Board {
+    val map: MutableMap<Position, Piece> = mutableMapOf()
+
+    map[Position(2, 2)] = QueenInitializer().initialize(Color.WHITE)
+    map[Position(1, 1)] = ManInitializer().initialize(Color.BLACK)
+    return RectangularBoard(getWidth(8), getHeight(8), map)
 }

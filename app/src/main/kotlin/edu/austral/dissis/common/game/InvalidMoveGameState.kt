@@ -1,9 +1,9 @@
 package edu.austral.dissis.common.game
 
 import edu.austral.dissis.common.board.Board
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.common.piece.Color
-import edu.austral.dissis.chess.validator.postCondition.PostConditionValidator
+import edu.austral.dissis.common.validator.postCondition.PostConditionValidator
 import edu.austral.dissis.common.validator.TurnValidator
 import edu.austral.dissis.common.validator.Validator
 import edu.austral.dissis.common.validator.winCondition.WinCondition

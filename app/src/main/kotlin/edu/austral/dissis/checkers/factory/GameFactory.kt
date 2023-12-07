@@ -20,3 +20,14 @@ fun createCheckersNormalGame(): GameState {
         listOf(HasEatenValidator(), PromotionValidator(QueenInitializer(), PieceType.PAWN))
     )
 }
+
+fun createCheckersQueenTestGame(): GameState {
+    val board = createCheckersQueenTestBoard()
+    return GameStateImp(
+        listOf(board),
+        ExtinctionCondition(),
+        CheckersTurnValidator(Color.WHITE, listOf()),
+        listOf(),
+        listOf(HasEatenValidator(), PromotionValidator(QueenInitializer(), PieceType.PAWN))
+    )
+}

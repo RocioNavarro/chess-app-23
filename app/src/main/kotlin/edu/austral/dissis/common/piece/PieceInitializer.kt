@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.factory
+package edu.austral.dissis.common.piece
 
 import edu.austral.dissis.common.piece.Color
 import edu.austral.dissis.common.piece.Piece

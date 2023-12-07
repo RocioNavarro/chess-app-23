@@ -5,9 +5,9 @@ import edu.austral.dissis.common.game.FinishGameState
 import edu.austral.dissis.common.game.GameState
 import edu.austral.dissis.common.game.GameStateImp
 import edu.austral.dissis.common.game.InvalidMoveGameState
-import edu.austral.dissis.chess.movement.Movement
-import edu.austral.dissis.chess.payload.GameStatePayload
-import edu.austral.dissis.chess.payload.InitializePayload
+import edu.austral.dissis.common.movement.Movement
+import edu.austral.dissis.server.payload.GameStatePayload
+import edu.austral.dissis.server.payload.InitializePayload
 import edu.austral.dissis.server.listener.InitializeListener
 import edu.austral.dissis.server.listener.MovementListener
 import edu.austral.ingsis.clientserver.Message

@@ -2,7 +2,7 @@ package edu.austral.dissis.client.listener
 
 import edu.austral.dissis.chess.gui.GameView
 import edu.austral.dissis.chess.gui.NewGameState
-import edu.austral.dissis.chess.payload.GameStatePayload
+import edu.austral.dissis.server.payload.GameStatePayload
 import edu.austral.ingsis.clientserver.Message
 import edu.austral.ingsis.clientserver.MessageListener
 

@@ -1,6 +1,6 @@
 package common.validator
 
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 import edu.austral.dissis.chess.validator.preCondition.ChessTurnValidator
 import edu.austral.dissis.chess.validator.winCondition.CheckMateValidator
 import edu.austral.dissis.common.Position

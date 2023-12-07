@@ -1,4 +1,4 @@
-package edu.austral.dissis.chess.validator.postCondition
+package edu.austral.dissis.common.validator.postCondition
 
 import edu.austral.dissis.common.board.Board
 import edu.austral.dissis.common.game.GameState

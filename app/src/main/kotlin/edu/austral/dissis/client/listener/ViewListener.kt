@@ -4,7 +4,7 @@ import edu.austral.dissis.client.GameClient
 import edu.austral.dissis.chess.gui.GameEventListener
 import edu.austral.dissis.chess.gui.Move
 import edu.austral.dissis.common.Position
-import edu.austral.dissis.chess.movement.Movement
+import edu.austral.dissis.common.movement.Movement
 
 class ViewListener(private val gameClient: GameClient) : GameEventListener {
 
